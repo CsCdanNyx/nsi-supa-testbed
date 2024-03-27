@@ -1,0 +1,95 @@
+---
+version: "3.9"
+
+name: nsi-services
+
+services:
+  #
+  # SuPA
+  #
+  supa:
+    # image: "ghcr.io/workfloworchestrator/supa:latest"
+    # image: "supa:clab-ceos4"
+    # image: "ghcr.io/cscdannyx/supa:containerlab-cEOS4"
+    image: "ghcr.io/cscdannyx/supa:clab-cEOS4-debug-test"     # change image branch
+    configs:
+      - source: supa.env
+        target: /usr/local/etc/supa/supa.env
+    volumes:
+      - ./supa/db:/usr/local/var/db
+      - ./supa/backend_configs:/usr/local/src/supa/src/supa/nrm/backends/clab_aristaCEOS4_configs    # clab_aristaCEOS4.env and stps_config.yml
+      - ./supa/backend_configs:/usr/local/src/supa/src/supa/nrm/backends/clab_aristaCEOS4_netmiko_configs   # clab_aristaCEOS4_netmiko.env and stps_config.yml
+    ports:
+      - "4321:4321"       # document_server_port
+      # - "50051:50051"    # SuPA grpc server port (optional exposed)
+      # - "8080:8080"      # default document_server_port
+    depends_on:
+      create-database-folder:
+        condition: service_completed_successfully
+      polynsi:
+        condition: service_started
+    networks:
+      - nsi-serv
+      - clab-mgmt       # connect to nrm switch mgmt network
+  #
+  # PolyNSI
+  #
+  polynsi:
+    image: "ghcr.io/workfloworchestrator/polynsi:latest"
+    #image: polynsi:test
+    ports:
+      - "8443:8443"   # PolyNSI server port
+      # - "9090:9090"   # PolyNSI grpc client port (optional exposed)
+      # - "8080:8080"   # PolyNSI default server port
+    configs:
+      - source: application.properties
+        target: /usr/local/src/polynsi/application.properties     # Change supa grpc ip
+      - source: polynsi-keystore.jks
+        target: /usr/local/src/polynsi/polynsi-keystore.jks
+      - source: polynsi-truststore.jks
+        target: /usr/local/src/polynsi/polynsi-truststore.jks
+      - source: logback-spring.xml                                # DEBUG TRACE
+        target: /usr/local/src/polynsi/logback-spring.xml
+    networks:
+      - nsi-serv
+
+  #
+  # create SuPA database folder
+  #
+  create-database-folder:
+    image: 'busybox:latest'
+    command: ["sh", "-c", "test -d /usr/local/var/db || mkdir /usr/local/var/db"]
+    volumes:
+      - ./supa/db:/usr/local/var/db
+  #
+  # NSI Requester
+  #  
+  nsi-requester:
+    image: "ghcr.io/bandwidthondemand/nsi-requester:1.1.1"
+    ports:
+      - "9000:9000"                # Web GUI
+    configs:
+      - source: config-overrides
+        target: /config-overrides.conf  # Requester urn, Providers configs
+    networks:
+      - nsi-serv
+
+configs:
+  supa.env:
+    file: ./supa/supa.env                          # change backend, polynsi's and supa's grpc ip and port
+  application.properties:
+    file: ./polynsi/application.properties          # change supa grpc ip
+  polynsi-keystore.jks:
+    file: ./polynsi/polynsi-keystore.jks
+  polynsi-truststore.jks:
+    file: ./polynsi/polynsi-truststore.jks
+  logback-spring.xml: 
+    file: ./polynsi/logback-spring.xml              # DEBUG TRACE
+  config-overrides:
+    file: ./nsi-requester/config-overrides.conf     # change provider url, uri
+
+networks:
+  nsi-serv:           # all nsi services network
+    driver: bridge
+  clab-mgmt:          # containerlab management network
+    driver: bridge

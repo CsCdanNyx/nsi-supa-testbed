@@ -1,0 +1,25 @@
+name: ceos_connect_mgmt
+
+mgmt:
+  network: nsi-services_clab-mgmt
+
+topology:
+  kinds:
+    ceos:
+      image: ceos:4.30.1F   # manually downloaded from https://www.arista.com/en/support/software-download
+
+  nodes:
+    sw1:
+      kind: ceos
+
+    ceos1:
+      kind: ceos
+
+    host1:
+      kind: linux
+      image: ghcr.io/nicolaka/netshoot:latest
+
+  links:
+    - endpoints: ["sw1:eth1", "ceos1:eth1"]
+    - endpoints: ["ceos1:eth2", "host1:eth1"]
+

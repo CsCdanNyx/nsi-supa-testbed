@@ -1,0 +1,45 @@
+### nsi-services ###
+# SuPA
+nsi-services/supa/db/*
+# PolyNSI
+
+# NSI-Requester
+
+# openNSA
+
+
+
+
+### clab ###
+# Binaries for programs and plugins
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+bin
+bin/*
+rpm
+rpm/*
+dist
+private
+# clab directories
+clab-*
+
+# ignore the following files/directories
+graph/*
+
+license.key
+container-lab
+containerlab
+tests/out
+# ignore backup clab topo files
+**/.*clab.y*ml.bak
+**/*.y*ml.bak
+
+
+
+### VisualStudioCode ###
+.vscode/*
+.history
+.DS_Store
