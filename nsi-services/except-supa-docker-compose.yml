@@ -96,5 +96,5 @@ configs:
 networks:
   nsi-serv:           # all nsi services network
     driver: bridge
-  clab-mgmt:          # containerlab management network
+  clab-mgmt:          # containerlab management network, should run before clab that connected to this bridge (br-name: nsi-services_clab-mgmt).
     driver: bridge

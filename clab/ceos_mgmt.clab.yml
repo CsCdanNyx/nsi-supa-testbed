@@ -1,7 +1,7 @@
 name: ceos_connect_mgmt
 
 mgmt:
-  network: nsi-services_clab-mgmt
+  network: nsi-services_clab-mgmt   # The bridge connected to supa, should run after the compose has created this bridge (br-name: nsi-services_clab-mgmt).
 
 topology:
   kinds:
