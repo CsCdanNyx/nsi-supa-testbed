@@ -85,8 +85,8 @@ configs:
     file: ./polynsi/polynsi-truststore.jks
   logback-spring.xml: 
     file: ./polynsi/logback-spring.xml              # DEBUG TRACE
-  # config-overrides:
-  #   file: ./nsi-requester/config-overrides.conf     # change provider url, uri
+  config-overrides:
+    file: ./nsi-requester/config-overrides.conf     # change provider url, uri
 
 networks:
   nsi-serv:           # all nsi services network
