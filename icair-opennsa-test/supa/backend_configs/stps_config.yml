@@ -1,0 +1,58 @@
+stps:
+  # - stp_id: my_stp1                       # Required, str, Uniq ID of the STP.
+  #   port_id: Ethernet1                    # Required, str, ID of the corresponding port.
+  #   vlans: "1728-1799"                    # Required, str, VLANs part of this STP.
+  #   description: "my test stp 1 with vlan range 1728-1799."         # Optional, str, STP description.
+  #   is_alias_in: my_stp1_i                # Optional, str, Inbound STP ID from connected topology.
+  #   is_alias_out: my_stp1_o               # Optional, str, Outbound STP ID to connected topology.
+  #   bandwidth: 1000                       # Required, int, Available bandwidth for this STP in Mbps.
+  #   enabled: True                         # Optional, bool, STP status.
+
+  - stp_id: my_stp1
+    port_id: Et1
+    vlans: "1728-1799"
+    description: "my test stp 1 with vlan range 1728-1799."
+
+  - stp_id: my_stp2
+    port_id: Et2
+    vlans: "1726-1777"
+    description: "my test stp 2 with vlan range 1726-1777."
+
+  - stp_id: my_stp3
+    port_id: Et1
+    vlans: "1705-1720"
+    description: "my test stp 1 with vlan range 1705-1720."
+
+  - stp_id: my_stp4
+    port_id: Et2
+    vlans: "1705-1720"
+    description: "my test stp 2 with vlan range 1705-1720."
+
+  - stp_id: my_stp5
+    port_id: Et1
+    vlans: "1703-1704"
+    description: "my test stp 1 with vlan range 1703-1704."
+
+  - stp_id: my_stp6
+    port_id: Et2
+    vlans: "1703-1704"
+    description: "my test stp 2 with vlan range 1703-1704."
+
+  - stp_id: my_stp7
+    port_id: Et1
+    vlans: "1702"
+    description: "my test stp 1 with vlan 1702."
+
+  - stp_id: my_stp8
+    port_id: Et2
+    vlans: "1702"
+    description: "my test stp 2 with vlan 1702."
+
+  - stp_id: my_stp100
+    port_id: Et3
+    vlans: "1730"
+    description: "my test stp 3 with vlan 1730."
+    is_alias_in: my_stp3_in
+    is_alias_out: my_stp3_out
+    bandwidth: 1000
+    enabled: True
