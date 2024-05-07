@@ -64,15 +64,15 @@ services:
   #
   # NSI Requester
   #  
-  # nsi-requester:
-  #   image: "ghcr.io/bandwidthondemand/nsi-requester:1.1.1"
-  #   ports:
-  #     - "9000:9000"                # Web GUI
-  #   configs:
-  #     - source: config-overrides
-  #       target: /config-overrides.conf  # Requester urn, Providers configs
-  #   networks:
-  #     - nsi-serv
+  nsi-requester:
+    image: "ghcr.io/bandwidthondemand/nsi-requester:1.1.1"
+    ports:
+      - "9000:9000"                # Web GUI
+    configs:
+      - source: config-overrides
+        target: /config-overrides.conf  # Requester urn, Providers configs
+    networks:
+      - nsi-serv
 
 configs:
   supa.env:
