@@ -28,6 +28,10 @@ services:
   #
   nsi-pce:
     image: ghcr.io/bandwidthondemand/nsi-pce:2.0-7
+<<<<<<< HEAD
+=======
+    container_name: nsi-pce
+>>>>>>> e283e9f38bd4e92d5e12e6fe8b9eb41db8fc6dd4
     # ports:
     #   - '8090:8080'
     volumes:
