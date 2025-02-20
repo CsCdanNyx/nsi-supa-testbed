@@ -12,15 +12,15 @@ stps:
     port_id: Et1
     vlans: "1726-1799"
     description: "VLAN range 1726-1799, to nycu1726."
-    is_alias_in: "urn:ogf:network:nycu.edu.tw:2025:topology:nycu1726-out"
-    is_alias_out: "urn:ogf:network:nycu.edu.tw:2025:topology:nycu1726-in"
+    is_alias_in: "urn:ogf:network:nycu.edu.tw:2025:topology:icair1726:out"
+    is_alias_out: "urn:ogf:network:nycu.edu.tw:2025:topology:icair1726:in"
     enabled: True
 
   - stp_id: nycu1726
     port_id: Et2
     vlans: "1728-1777"
     description: "VLAN range 1728-1777, to nycu1728."
-    is_alias_in: "urn:ogf:network:nycu.edu.tw:2025:topology:nycu1728-out"
-    is_alias_out: "urn:ogf:network:nycu.edu.tw:2025:topology:nycu1728-in"
+    is_alias_in: "urn:ogf:network:nycu.edu.tw:2025:topology:icair1728:out"
+    is_alias_out: "urn:ogf:network:nycu.edu.tw:2025:topology:icair1728:in"
     enabled: True
 

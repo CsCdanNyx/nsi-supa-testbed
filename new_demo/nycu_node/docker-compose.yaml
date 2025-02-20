@@ -75,7 +75,7 @@ services:
   #
   nsi-supa:
     # image: "ghcr.io/workfloworchestrator/supa:latest"
-    image: "ghcr.io/cscdannyx/supa:icair-aristaeos4"     # change image branch
+    image: "ghcr.io/cscdannyx/supa:icair-aristaEOS4"     # change image branch
     configs:
       - source: supa.env
         target: /usr/local/etc/supa/supa.env
