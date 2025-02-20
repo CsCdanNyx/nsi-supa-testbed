@@ -1,0 +1,26 @@
+stps:
+  # - stp_id: my_stp1                       # Required, str, Uniq ID of the STP.
+  #   port_id: Ethernet1                    # Required, str, ID of the corresponding port.
+  #   vlans: "1728-1799"                    # Required, str, VLANs part of this STP.
+  #   description: "my test stp 1 with vlan range 1728-1799."         # Optional, str, STP description.
+  #   is_alias_in: connected_stp_out                # Optional, str, Inbound STP ID from connected topology.
+  #   is_alias_out: connected_stp_in               # Optional, str, Outbound STP ID to connected topology.
+  #   bandwidth: 1000                       # Required, int, Available bandwidth for this STP in Mbps.
+  #   enabled: True                         # Optional, bool, STP status.
+
+  - stp_id: icair1726
+    port_id: Et1
+    vlans: "1726-1799"
+    description: "VLAN range 1726-1799, to icair1726."
+    is_alias_in: "urn:ogf:network:icairtest.org:2025:topology:icair1726-out"
+    is_alias_out: "urn:ogf:network:icairtest.org:2025:topology:icair1726-in"
+    enabled: True
+
+  - stp_id: icair1728
+    port_id: Et2
+    vlans: "1728-1777"
+    description: "VLAN range 1728-1777, to icair1728."
+    is_alias_in: "urn:ogf:network:icairtest.org:2025:topology:icair1728-out"
+    is_alias_out: "urn:ogf:network:icairtest.org:2025:topology:icair1728-in"
+    enabled: True
+
