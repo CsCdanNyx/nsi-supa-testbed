@@ -1,0 +1,89 @@
+version: '3.8'
+
+name: 'nycu-node'
+
+services:
+
+  #
+  # SuPA
+  #
+  nsi-supa:
+    # image: "ghcr.io/workfloworchestrator/supa:latest"
+    # image: "ghcr.io/cscdannyx/supa:icair-aristaEOS4"     # change image branch
+    image: "ghcr.io/cscdannyx/supa:icair-aristaeos4"
+    configs:
+      - source: supa.env
+        target: /usr/local/etc/supa/supa.env
+    volumes:
+      - ./config/supa/db:/usr/local/var/db
+      # Add your backend_configs folder for each backend
+      - ./config/supa/backend_configs:/usr/local/src/supa/src/supa/nrm/backends/clab_aristaCEOS4_netmiko_configs   # clab_aristaCEOS4_netmiko.env and stps_config.yml
+      - ./config/supa/backend_configs:/usr/local/src/supa/src/supa/nrm/backends/yaml_topology_test_configs
+
+    ports:
+      - "4321:4321"       # document_server_port for topology document
+    depends_on:
+      create-database-folder:
+        condition: service_completed_successfully
+      polynsi:
+        condition: service_started
+
+  #
+  # PolyNSI
+  #
+  polynsi:
+    image: "ghcr.io/workfloworchestrator/polynsi:latest"
+    ports:
+      - "8443:8443"   # NSI soap port for connection with other NSA
+    configs:
+      - source: polynsi-application.properties
+        target: /usr/local/src/polynsi/application.properties
+      - source: polynsi-keystore.jks
+        target: /usr/local/src/polynsi/polynsi-keystore.jks
+      - source: polynsi-truststore.jks
+        target: /usr/local/src/polynsi/polynsi-truststore.jks
+      - source: polynsi-logback-spring.xml
+        target: /usr/local/src/polynsi/logback-spring.xml
+
+  #
+  # create SuPA database folder
+  #
+  create-database-folder:
+    image: 'busybox:latest'
+    command: ["sh", "-c", "test -d /usr/local/var/db || mkdir /usr/local/var/db"]
+    volumes:
+      - ./config/supa/db:/usr/local/var/db
+  
+  #
+  # NSI Requester
+  #  
+  nsi-requester:
+    image: "ghcr.io/bandwidthondemand/nsi-requester:1.1.1"
+    ports:
+      - "9000:9000"                # Web GUI
+    environment:
+      - TZ=Asia/Taipei            # nsi-requester web gui uses default JVM timezone of the container
+      # - TZ=America/Chicago
+
+    configs:
+      - source: requester-config-overrides
+        target: /config-overrides.conf        # Requester urn, Providers configs
+
+
+configs:
+  supa.env:
+    file: ./config/supa/supa.env                          # change backend
+  polynsi-application.properties:
+    file: ./config/polynsi/application.properties
+  polynsi-keystore.jks:
+    file: ./config/polynsi/polynsi-keystore.jks
+  polynsi-truststore.jks:
+    file: ./config/polynsi/polynsi-truststore.jks
+  polynsi-logback-spring.xml: 
+    file: ./config/polynsi/logback-spring.xml
+  requester-config-overrides:
+    file: ./config/nsi-requester/config-overrides.conf
+
+
+volumes:
+  nsi_safnari_postgres_data:

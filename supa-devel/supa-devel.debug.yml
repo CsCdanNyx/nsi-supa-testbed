@@ -1,0 +1,116 @@
+---
+version: "3.9"
+
+name: supa-devel
+
+services:
+  #
+  # SuPA
+  #
+  nsi-supa:
+    # image: "ghcr.io/workfloworchestrator/supa:latest"
+    # image: "supa:clab-ceos4"
+    # image: "ghcr.io/cscdannyx/supa:containerlab-cEOS4"
+    # image: "ghcr.io/cscdannyx/supa:clab-cEOS4-debug-test"     # change image branch
+    image: "ghcr.io/cscdannyx/supa:icair-aristaeos4"     # change image branch
+    # For debugging
+    command:
+      - "sh"
+      - "-c"
+      # - |                                                             # install the debugpy and wait for connection from remote debugger client, once connected, start the SuPA server
+      #   pip3 install debugpy -t /tmp \
+      #   && python3 /tmp/debugpy --wait-for-client --listen 0.0.0.0:5678 \  
+      #   /usr/local/bin/supa serve --log-level DEBUG
+      # - |                                                             # install the debugpy
+      #   pip install -e '.[dev]' \
+      #   && pip3 install debugpy -t /tmp \
+      #   && python3 /tmp/debugpy \  
+      #   /usr/local/bin/supa serve --log-level DEBUG
+      - |                                                             # normal
+        pip3 install debugpy -t /tmp \
+        && python3 /tmp/debugpy \  
+        /usr/local/bin/supa serve --log-level DEBUG
+    configs:
+      - source: supa.env
+        target: /usr/local/etc/supa/supa.env
+    volumes:
+      - ./supa/db:/usr/local/var/db
+      - ./supa/backend_configs:/usr/local/src/supa/src/supa/nrm/backends/clab_aristaCEOS4_configs    # clab_aristaCEOS4.env and stps_config.yml
+      - ./supa/backend_configs:/usr/local/src/supa/src/supa/nrm/backends/clab_aristaCEOS4_netmiko_configs   # clab_aristaCEOS4_netmiko.env and stps_config.yml
+      - ./supa/backend_configs:/usr/local/src/supa/src/supa/nrm/backends/yaml_topology_test_configs
+    ports:
+      - "4321:4321"       # document_server_port
+      # - "50051:50051"    # SuPA grpc server port (optional exposed)
+      # - "8180:8080"      # default document_server_port
+      - "5678:5678"       # debugpy port
+    depends_on:
+      create-database-folder:
+        condition: service_completed_successfully
+      polynsi:
+        condition: service_started
+    networks:
+      supa-devel:
+  #
+  # PolyNSI
+  #
+  polynsi:
+    image: "ghcr.io/workfloworchestrator/polynsi:latest"
+    #image: polynsi:test
+    ports:
+      - "8443:8443"   # PolyNSI server port
+      # - "9090:9090"   # PolyNSI grpc client port (optional exposed)
+      # - "8080:8080"   # PolyNSI default server port
+    configs:
+      - source: application.properties
+        target: /usr/local/src/polynsi/application.properties     # Change supa grpc ip
+      - source: polynsi-keystore.jks
+        target: /usr/local/src/polynsi/polynsi-keystore.jks
+      - source: polynsi-truststore.jks
+        target: /usr/local/src/polynsi/polynsi-truststore.jks
+      - source: logback-spring.xml                                # DEBUG TRACE
+        target: /usr/local/src/polynsi/logback-spring.xml
+    networks:
+      - supa-devel
+
+  #
+  # create SuPA database folder
+  #
+  create-database-folder:
+    image: 'busybox:latest'
+    command: ["sh", "-c", "test -d /usr/local/var/db || mkdir /usr/local/var/db"]
+    volumes:
+      - ./supa/db:/usr/local/var/db
+  #
+  # NSI Requester
+  #  
+  nsi-requester:
+    image: "ghcr.io/bandwidthondemand/nsi-requester:1.1.1"
+    ports:
+      - "9000:9000"                # Web GUI
+    environment:
+      # override the default timezone
+      # EXTRA: "-Duser.timezone=Asia/Taipei -J-Xms512m -J-Xmx512m -J-server -J-verbose:gc -J-XX:+PrintGCDetails -J-XX:+PrintGCDateStamps -J-XX:+UseParallelGC -J-XX:+UseParallelOldGC"
+      - TZ=Asia/Taipei            # nsi-requester uses default JVM timezone of the container
+    configs:
+      - source: config-overrides
+        target: /config-overrides.conf  # Requester urn, Providers configs
+    networks:
+      - supa-devel
+
+configs:
+  supa.env:
+    file: ./supa/supa.env                          # change backend, polynsi's and supa's grpc ip and port
+  application.properties:
+    file: ./polynsi/application.properties          # change supa grpc ip
+  polynsi-keystore.jks:
+    file: ./polynsi/polynsi-keystore.jks
+  polynsi-truststore.jks:
+    file: ./polynsi/polynsi-truststore.jks
+  logback-spring.xml: 
+    file: ./polynsi/logback-spring.xml              # DEBUG TRACE
+  config-overrides:
+    file: ./nsi-requester/config-overrides.conf     # change provider url, uri
+
+networks:
+  supa-devel:           # all nsi services network
+    driver: bridge

@@ -1,12 +1,15 @@
 ### nsi-services ###
 # SuPA
-nsi-services/supa/db/*
+**/supa/db/*
 # PolyNSI
 
 # NSI-Requester
 
 # openNSA
 
+
+# DDS
+**/cache/*
 
 
 
