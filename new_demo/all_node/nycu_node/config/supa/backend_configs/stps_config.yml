@@ -12,15 +12,15 @@ stps:
     port_id: Et1
     vlans: "1700-1799"
     description: "VLAN range 1700-1799, to iCAIR STP nycu-sw."
-    is_alias_in: "urn:ogf:network:icairtest.org:2025:topology:nycu-sw:out"
-    is_alias_out: "urn:ogf:network:icairtest.org:2025:topology:nycu-sw:in"
+    # is_alias_in: "urn:ogf:network:icairtest.org:2025:topology:nycu-sw:out"
+    # is_alias_out: "urn:ogf:network:icairtest.org:2025:topology:nycu-sw:in"
     enabled: True
 
   - stp_id: icair-test
     port_id: Et2
     vlans: "1700-1799"
     description: "VLAN range 1700-1799, to iCAIR STP nycu-test."
-    is_alias_in: "urn:ogf:network:icairtest.org:2025:topology:nycu-test:out"
-    is_alias_out: "urn:ogf:network:icairtest.org:2025:topology:nycu-test:in"
+    # is_alias_in: "urn:ogf:network:icairtest.org:2025:topology:nycu-test:out"
+    # is_alias_out: "urn:ogf:network:icairtest.org:2025:topology:nycu-test:in"
     enabled: True
 

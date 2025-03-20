@@ -6,10 +6,9 @@
     <documents>/nsi-dds/config/documents</documents>
     <cache>/nsi-dds/config/cache</cache>
     <repository>/nsi-dds/config/repository</repository>
-    <!-- <expiryInterval>600</expiryInterval> -->
-    <expiryInterval>60</expiryInterval>
+    <expiryInterval>600</expiryInterval>
     <!-- DDS url -->
-    <baseURL>http://192.168.13.63:8401/dds</baseURL>
+    <baseURL>http://nycu-nsi-dds:8401/dds</baseURL>
 
     <server address="0.0.0.0" port="8401" packageName="net.es.nsi.dds" />
 
@@ -31,10 +30,10 @@
 
     <!-- iCAIR DDS -->
     <!-- <peerURL type="application/vnd.ogf.nsi.dds.v1+xml">https://165.124.33.153:8401/dds</peerURL> -->
-    <peerURL type="application/vnd.ogf.nsi.dds.v1+xml">http://192.168.13.63:8402/dds</peerURL>
+    <peerURL type="application/vnd.ogf.nsi.dds.v1+xml">http://icair-nsi-dds:8401/dds</peerURL>
 
     <!-- my SuPA -->
     <!-- <peerURL type="application/vnd.ogf.nsi.nsa.v1+xml">http://192.168.13.63:4321/discovery</peerURL> -->
-    <peerURL type="application/vnd.ogf.nsi.nsa.v1+xml">http://nsi-supa:4321/discovery</peerURL>
+    <peerURL type="application/vnd.ogf.nsi.nsa.v1+xml">http://nycu-nsi-supa:4321/discovery</peerURL>
 
 </tns:dds>

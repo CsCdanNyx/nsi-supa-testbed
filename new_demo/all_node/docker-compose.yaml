@@ -1,0 +1,272 @@
+version: '3.8'
+
+name: 'nsi-multi-node'
+
+services:
+  #
+  # NYCU Node Services
+  #
+  nycu-nsi-dds:
+    image: ghcr.io/bandwidthondemand/nsi-dds:1.2.0-1
+    depends_on:
+      - nycu-nsi-supa
+    ports:
+      - '8401:8401'           # DDS document port
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8401/dds"]
+      interval: 5s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+    volumes:
+      - ./nycu_node/config/dds:/nsi-dds/config
+    networks:
+      - nsi-network
+
+  nycu-nsi-pce:
+    image: ghcr.io/bandwidthondemand/nsi-pce:2.0-7
+    volumes:
+      - ./nycu_node/config/pce:/nsi-pce/config
+    depends_on:
+      nycu-nsi-dds:
+        condition: service_healthy
+    networks:
+      - nsi-network
+
+  nycu-nsi-safnari:
+    image: ghcr.io/bandwidthondemand/nsi-safnari:v3.0.1
+    ports:
+      - "9080:80"         # Safnari Web GUI
+    environment:
+      - PORT=80
+      - ADDRESS=0.0.0.0
+      - CONFIG=/config/config-overrides.conf
+      - PGHOST=nycu-nsi-postgres
+      - PGPORT=5432
+      - PGDATABASE=nsi-safnari
+      - PGUSER=nsi-safnari-user
+      - PGPASSWORD=nsitest
+    volumes:
+      - ./nycu_node/config/safnari:/config
+    depends_on:
+      - nycu-nsi-pce
+      - nycu-nsi-postgres
+    restart: on-failure:3
+    networks:
+      - nsi-network
+
+  nycu-nsi-postgres:
+    image: postgres:9.6.21-alpine
+    environment:
+      - POSTGRES_USER=nsi-safnari-user
+      - POSTGRES_PASSWORD=nsitest
+      - POSTGRES_DB=nsi-safnari
+    volumes:
+      - nycu_nsi_safnari_postgres_data:/var/lib/postgresql/data
+    networks:
+      - nsi-network
+
+  nycu-nsi-supa:
+    image: "ghcr.io/cscdannyx/supa:icair-aristaeos4"
+    configs:
+      - source: nycu-supa-env
+        target: /usr/local/etc/supa/supa.env
+    volumes:
+      - ./nycu_node/config/supa/db:/usr/local/var/db
+      - ./nycu_node/config/supa/backend_configs:/usr/local/src/supa/src/supa/nrm/backends/clab_aristaCEOS4_netmiko_configs
+      - ./nycu_node/config/supa/backend_configs:/usr/local/src/supa/src/supa/nrm/backends/yaml_topology_test_configs
+    ports:
+      - "4321:4321"       # document_server_port for topology document
+    depends_on:
+      nycu-create-database-folder:
+        condition: service_completed_successfully
+      nycu-polynsi:
+        condition: service_started
+    networks:
+      - nsi-network
+
+  nycu-polynsi:
+    image: "ghcr.io/workfloworchestrator/polynsi:latest"
+    ports:
+      - "8443:8443"   # NSI soap port for connection with other NSA
+    configs:
+      - source: nycu-polynsi-application-properties
+        target: /usr/local/src/polynsi/application.properties
+      - source: nycu-polynsi-keystore
+        target: /usr/local/src/polynsi/polynsi-keystore.jks
+      - source: nycu-polynsi-truststore
+        target: /usr/local/src/polynsi/polynsi-truststore.jks
+      - source: nycu-polynsi-logback
+        target: /usr/local/src/polynsi/logback-spring.xml
+    networks:
+      - nsi-network
+
+  nycu-create-database-folder:
+    image: 'busybox:latest'
+    command: ["sh", "-c", "test -d /usr/local/var/db || mkdir /usr/local/var/db"]
+    volumes:
+      - ./nycu_node/config/supa/db:/usr/local/var/db
+    networks:
+      - nsi-network
+  
+  nycu-nsi-requester:
+    image: "ghcr.io/bandwidthondemand/nsi-requester:1.1.1"
+    ports:
+      - "9000:9000"                # Web GUI
+    environment:
+      - TZ=Asia/Taipei
+    configs:
+      - source: nycu-requester-config-overrides
+        target: /config-overrides.conf
+    networks:
+      - nsi-network
+
+  #
+  # ICAIR Node Services
+  #
+  icair-nsi-dds:
+    image: ghcr.io/bandwidthondemand/nsi-dds:1.2.0-1
+    ports:
+      - '8402:8401'           # DDS document port
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8401/dds"]
+      interval: 5s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+    volumes:
+      - ./icair_node/config/dds:/nsi-dds/config
+    networks:
+      - nsi-network
+
+  icair-nsi-pce:
+    image: ghcr.io/bandwidthondemand/nsi-pce:2.0-7
+    volumes:
+      - ./icair_node/config/pce:/nsi-pce/config
+    depends_on:
+      icair-nsi-dds:
+        condition: service_healthy
+    networks:
+      - nsi-network
+
+  icair-nsi-safnari:
+    image: ghcr.io/bandwidthondemand/nsi-safnari:v3.0.1
+    ports:
+      - "9082:80"         # Safnari Web GUI
+    environment:
+      - PORT=80
+      - ADDRESS=0.0.0.0
+      - CONFIG=/config/config-overrides.conf
+      - PGHOST=icair-nsi-postgres
+      - PGPORT=5432
+      - PGDATABASE=nsi-safnari
+      - PGUSER=nsi-safnari-user
+      - PGPASSWORD=nsitest
+    volumes:
+      - ./icair_node/config/safnari:/config
+    depends_on:
+      - icair-nsi-pce
+      - icair-nsi-postgres
+    restart: on-failure:3
+    networks:
+      - nsi-network
+
+  icair-nsi-postgres:
+    image: postgres:9.6.21-alpine
+    environment:
+      - POSTGRES_USER=nsi-safnari-user
+      - POSTGRES_PASSWORD=nsitest
+      - POSTGRES_DB=nsi-safnari
+    volumes:
+      - icair_nsi_safnari_postgres_data:/var/lib/postgresql/data
+    networks:
+      - nsi-network
+
+  icair-nsi-supa:
+    image: "ghcr.io/cscdannyx/supa:icair-aristaeos4"
+    configs:
+      - source: icair-supa-env
+        target: /usr/local/etc/supa/supa.env
+    volumes:
+      - ./icair_node/config/supa/db:/usr/local/var/db
+      - ./icair_node/config/supa/backend_configs:/usr/local/src/supa/src/supa/nrm/backends/clab_aristaCEOS4_netmiko_configs
+      - ./icair_node/config/supa/backend_configs:/usr/local/src/supa/src/supa/nrm/backends/yaml_topology_test_configs
+    ports:
+      - "4322:4321"       # document_server_port for topology document
+    depends_on:
+      icair-create-database-folder:
+        condition: service_completed_successfully
+      icair-polynsi:
+        condition: service_started
+    networks:
+      - nsi-network
+
+  icair-polynsi:
+    image: "ghcr.io/workfloworchestrator/polynsi:latest"
+    ports:
+      - "8442:8443"   # NSI soap port for connection with other NSA
+    configs:
+      - source: icair-polynsi-application-properties
+        target: /usr/local/src/polynsi/application.properties
+      - source: icair-polynsi-keystore
+        target: /usr/local/src/polynsi/polynsi-keystore.jks
+      - source: icair-polynsi-truststore
+        target: /usr/local/src/polynsi/polynsi-truststore.jks
+      - source: icair-polynsi-logback
+        target: /usr/local/src/polynsi/logback-spring.xml
+    networks:
+      - nsi-network
+
+  icair-create-database-folder:
+    image: 'busybox:latest'
+    command: ["sh", "-c", "test -d /usr/local/var/db || mkdir /usr/local/var/db"]
+    volumes:
+      - ./icair_node/config/supa/db:/usr/local/var/db
+    networks:
+      - nsi-network
+  
+  icair-nsi-requester:
+    image: "ghcr.io/bandwidthondemand/nsi-requester:1.1.1"
+    ports:
+      - "9002:9000"                # Web GUI
+    environment:
+      - TZ=Asia/Taipei
+    configs:
+      - source: icair-requester-config-overrides
+        target: /config-overrides.conf
+    networks:
+      - nsi-network
+
+configs:
+  nycu-supa-env:
+    file: ./nycu_node/config/supa/supa.env
+  nycu-polynsi-application-properties:
+    file: ./nycu_node/config/polynsi/application.properties
+  nycu-polynsi-keystore:
+    file: ./nycu_node/config/polynsi/polynsi-keystore.jks
+  nycu-polynsi-truststore:
+    file: ./nycu_node/config/polynsi/polynsi-truststore.jks
+  nycu-polynsi-logback:
+    file: ./nycu_node/config/polynsi/logback-spring.xml
+  nycu-requester-config-overrides:
+    file: ./nycu_node/config/nsi-requester/config-overrides.conf
+  icair-supa-env:
+    file: ./icair_node/config/supa/supa.env
+  icair-polynsi-application-properties:
+    file: ./icair_node/config/polynsi/application.properties
+  icair-polynsi-keystore:
+    file: ./icair_node/config/polynsi/polynsi-keystore.jks
+  icair-polynsi-truststore:
+    file: ./icair_node/config/polynsi/polynsi-truststore.jks
+  icair-polynsi-logback:
+    file: ./icair_node/config/polynsi/logback-spring.xml
+  icair-requester-config-overrides:
+    file: ./icair_node/config/nsi-requester/config-overrides.conf
+
+volumes:
+  nycu_nsi_safnari_postgres_data:
+  icair_nsi_safnari_postgres_data:
+
+networks:
+  nsi-network:
+    driver: bridge

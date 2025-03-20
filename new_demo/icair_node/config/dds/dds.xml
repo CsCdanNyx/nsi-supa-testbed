@@ -3,12 +3,15 @@
  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <!-- Local PA nsaID -->
     <nsaId>urn:ogf:network:icairtest.org:2025:nsa:supa</nsaId>
+    <!-- <nsaId>urn:ogf:network:icairtest.org:2025:nsa:safnari</nsaId> -->
     <documents>/nsi-dds/config/documents</documents>
     <cache>/nsi-dds/config/cache</cache>
     <repository>/nsi-dds/config/repository</repository>
-    <expiryInterval>600</expiryInterval>
+    <!-- <expiryInterval>600</expiryInterval> -->
+    <expiryInterval>60</expiryInterval>
     <!-- DDS url -->
-    <baseURL>http://165.124.33.153:8401/dds</baseURL>
+    <!-- <baseURL>http://165.124.33.153:8401/dds</baseURL> -->
+    <baseURL>http://192.168.13.63:8402/dds</baseURL>
 
     <server address="0.0.0.0" port="8401" packageName="net.es.nsi.dds" />
 
@@ -28,7 +31,11 @@
     <!-- Old AutoGOLE github discovery mechanism. -->
     <!-- <peerURL type="application/vnd.ogf.nsi.topology.v1+xml">https://raw.githubusercontent.com/jeroenh/AutoGOLE-Topologies/master/master.xml</peerURL> -->
 
+    <!-- NYCU DDS -->
+    <peerURL type="application/vnd.ogf.nsi.dds.v1+xml">http://192.168.13.63:8401/dds</peerURL>
+
     <!-- my SuPA -->
-    <peerURL type="application/vnd.ogf.nsi.nsa.v1+xml">http://165.124.33.153:4321/discovery</peerURL>
+    <peerURL type="application/vnd.ogf.nsi.nsa.v1+xml">http://nsi-supa:4321/discovery</peerURL>
+    <!-- <peerURL type="application/vnd.ogf.nsi.nsa.v1+xml">http://165.124.33.153:4321/discovery</peerURL> -->
 
 </tns:dds>

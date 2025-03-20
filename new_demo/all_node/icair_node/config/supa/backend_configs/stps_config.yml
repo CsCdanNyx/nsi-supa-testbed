@@ -8,19 +8,19 @@ stps:
   #   bandwidth: 1000                       # Required, int, Available bandwidth for this STP in Mbps.
   #   enabled: True                         # Optional, bool, STP status.
 
-  - stp_id: icair-arista
+  - stp_id: nycu-sw
     port_id: Et1
     vlans: "1700-1799"
-    description: "VLAN range 1700-1799, to iCAIR STP nycu-sw."
-    is_alias_in: "urn:ogf:network:icairtest.org:2025:topology:nycu-sw:out"
-    is_alias_out: "urn:ogf:network:icairtest.org:2025:topology:nycu-sw:in"
+    description: "VLAN range 1700-1799, to NYCU STP icair-arista."
+    # is_alias_in: "urn:ogf:network:nycu.edu.tw:2025:topology:icair-arista:out"
+    # is_alias_out: "urn:ogf:network:nycu.edu.tw:2025:topology:icair-arista:in"
     enabled: True
 
-  - stp_id: icair-test
+  - stp_id: nycu-test
     port_id: Et2
     vlans: "1700-1799"
-    description: "VLAN range 1700-1799, to iCAIR STP nycu-test."
-    is_alias_in: "urn:ogf:network:icairtest.org:2025:topology:nycu-test:out"
-    is_alias_out: "urn:ogf:network:icairtest.org:2025:topology:nycu-test:in"
+    description: "VLAN range 1700-1799, to NYCU STP icair-test."
+    # is_alias_in: "urn:ogf:network:nycu.edu.tw:2025:topology:icair-test:out"
+    # is_alias_out: "urn:ogf:network:nycu.edu.tw:2025:topology:icair-test:in"
     enabled: True
 

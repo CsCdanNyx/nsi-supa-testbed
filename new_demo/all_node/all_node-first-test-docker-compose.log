@@ -1,0 +1,312 @@
+nycu-polynsi-1  | 
+nycu-polynsi-1   |   .   ____          _            __ _ _
+nycu-polynsi-1   |  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+nycu-polynsi-1   | ( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+nycu-polynsi-1   |  \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+nycu-polynsi-1   |   '  |____| .__|_| |_|_| |_\__, | / / / /
+nycu-polynsi-1   |  =========|_|==============|___/=/_/_/_/
+nycu-polynsi-1   |  :: Spring Boot ::                (v2.5.8)
+nycu-polynsi-1   | 
+nycu-polynsi-1   | 2025-03-20 08:28:45.333  INFO 7 --- [           main] nl.surf.polynsi.PolyNSIApplication       : Starting PolyNSIApplication v0.2.0 using Java 11.0.16 on 211e2b9e8fba with PID 7 (/usr/local/src/polynsi/polynsi.jar started by root in /usr/local/src/polynsi)
+nycu-polynsi-1   | 2025-03-20 08:28:45.367  INFO 7 --- [           main] nl.surf.polynsi.PolyNSIApplication       : No active profile set, falling back to default profiles: default
+nycu-polynsi-1   | 2025-03-20 08:28:48.019  INFO 7 --- [           main] org.eclipse.jetty.util.log               : Logging initialized @4514ms to org.eclipse.jetty.util.log.Slf4jLog
+nycu-polynsi-1   | 2025-03-20 08:28:48.221  INFO 7 --- [           main] o.s.b.w.e.j.JettyServletWebServerFactory : Server initialized with port: 8443
+nycu-polynsi-1   | 2025-03-20 08:28:48.226  INFO 7 --- [           main] org.eclipse.jetty.server.Server          : jetty-9.4.44.v20210927; built: 2021-09-27T23:02:44.612Z; git: 8da83308eeca865e495e53ef315a249d63ba9332; jvm 11.0.16+8
+nycu-polynsi-1   | 2025-03-20 08:28:48.330  INFO 7 --- [           main] o.e.j.s.h.ContextHandler.application     : Initializing Spring embedded WebApplicationContext
+nycu-polynsi-1   | 2025-03-20 08:28:48.330  INFO 7 --- [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2789 ms
+nycu-polynsi-1   | 2025-03-20 08:28:48.635  INFO 7 --- [           main] org.eclipse.jetty.server.session         : DefaultSessionIdManager workerName=node0
+nycu-polynsi-1   | 2025-03-20 08:28:48.636  INFO 7 --- [           main] org.eclipse.jetty.server.session         : No SessionScavenger set, using defaults
+nycu-polynsi-1   | 2025-03-20 08:28:48.637  INFO 7 --- [           main] org.eclipse.jetty.server.session         : node0 Scavenging every 600000ms
+nycu-polynsi-1   | 2025-03-20 08:28:48.649  INFO 7 --- [           main] o.e.jetty.server.handler.ContextHandler  : Started o.s.b.w.e.j.JettyEmbeddedWebAppContext@2a5b3fee{application,/,[file:///tmp/jetty-docbase.8443.16919292253538189297/],AVAILABLE}
+nycu-polynsi-1   | 2025-03-20 08:28:48.650  INFO 7 --- [           main] org.eclipse.jetty.server.Server          : Started @5146ms
+nycu-nsi-dds-1   | JarClassLoader: Warning: module-info.class in lib/jakarta.json.bind-api-2.0.0.jar is hidden by lib/jakarta.json-api-2.0.0.jar (with different bytecode)
+icair-nsi-supa-1  | [2m2025-03-20 08:28:45[0m [[32m[1minfo     [0m] [1mUsing pip installed version of env file.[0m [[34m[1msupa[0m] [36mpath[0m=[35m/usr/local/etc/supa/supa.env[0m
+icair-nsi-supa-1  | [2m2025-03-20 08:28:45[0m [[32m[1minfo     [0m] [1mStarting SuPA 0.2.2.dev1 using Python 3.8.20 (CPython) on 197bf169d542[0m [[34m[1msupa[0m] 
+icair-nsi-dds-1  | JarClassLoader: Warning: module-info.class in lib/jakarta.json.bind-api-2.0.0.jar is hidden by lib/jakarta.json-api-2.0.0.jar (with different bytecode)
+icair-nsi-dds-1   | JarClassLoader: Warning: module-info.class in lib/jakarta.json-2.0.0-module.jar is hidden by lib/jakarta.json-api-2.0.0.jar (with different bytecode)
+icair-nsi-dds-1   | JarClassLoader: Warning: module-info.class in lib/jakarta.xml.bind-api-3.0.0.jar is hidden by lib/jakarta.json-api-2.0.0.jar (with different bytecode)
+icair-nsi-dds-1   | JarClassLoader: Warning: module-info.class in lib/jakarta.activation-2.0.0.jar is hidden by lib/jakarta.json-api-2.0.0.jar (with different bytecode)
+icair-nsi-dds-1   | JarClassLoader: Warning: module-info.class in lib/jakarta.ws.rs-api-3.0.0.jar is hidden by lib/jakarta.json-api-2.0.0.jar (with different bytecode)
+icair-nsi-dds-1   | JarClassLoader: Warning: module-info.class in lib/jakarta.annotation-api-2.0.0.jar is hidden by lib/jakarta.json-api-2.0.0.jar (with different bytecode)
+icair-nsi-dds-1   | JarClassLoader: Warning: module-info.class in lib/jaxb-runtime-3.0.0.jar is hidden by lib/jakarta.json-api-2.0.0.jar (with different bytecode)
+icair-nsi-dds-1   | JarClassLoader: Warning: module-info.class in lib/jaxb-core-3.0.0.jar is hidden by lib/jakarta.json-api-2.0.0.jar (with different bytecode)
+icair-nsi-dds-1   | JarClassLoader: Warning: module-info.class in lib/txw2-3.0.0.jar is hidden by lib/jakarta.json-api-2.0.0.jar (with different bytecode)
+icair-nsi-dds-1   | JarClassLoader: Warning: module-info.class in lib/istack-commons-runtime-4.0.0.jar is hidden by lib/jakarta.json-api-2.0.0.jar (with different bytecode)
+nycu-nsi-dds-1    | JarClassLoader: Warning: module-info.class in lib/jakarta.json-2.0.0-module.jar is hidden by lib/jakarta.json-api-2.0.0.jar (with different bytecode)
+nycu-nsi-dds-1    | JarClassLoader: Warning: module-info.class in lib/jakarta.xml.bind-api-3.0.0.jar is hidden by lib/jakarta.json-api-2.0.0.jar (with different bytecode)
+nycu-nsi-dds-1    | JarClassLoader: Warning: module-info.class in lib/jakarta.activation-2.0.0.jar is hidden by lib/jakarta.json-api-2.0.0.jar (with different bytecode)
+nycu-nsi-dds-1    | JarClassLoader: Warning: module-info.class in lib/jakarta.ws.rs-api-3.0.0.jar is hidden by lib/jakarta.json-api-2.0.0.jar (with different bytecode)
+nycu-nsi-dds-1    | JarClassLoader: Warning: module-info.class in lib/jakarta.annotation-api-2.0.0.jar is hidden by lib/jakarta.json-api-2.0.0.jar (with different bytecode)
+nycu-nsi-dds-1    | JarClassLoader: Warning: module-info.class in lib/jaxb-runtime-3.0.0.jar is hidden by lib/jakarta.json-api-2.0.0.jar (with different bytecode)
+nycu-nsi-dds-1    | JarClassLoader: Warning: module-info.class in lib/jaxb-core-3.0.0.jar is hidden by lib/jakarta.json-api-2.0.0.jar (with different bytecode)
+nycu-nsi-dds-1    | JarClassLoader: Warning: module-info.class in lib/txw2-3.0.0.jar is hidden by lib/jakarta.json-api-2.0.0.jar (with different bytecode)
+nycu-nsi-dds-1    | JarClassLoader: Warning: module-info.class in lib/istack-commons-runtime-4.0.0.jar is hidden by lib/jakarta.json-api-2.0.0.jar (with different bytecode)
+nycu-nsi-dds-1    | JarClassLoader: Warning: org/apache/commons/logging/impl/SimpleLog.class in lib/commons-logging-1.2.jar is hidden by lib/spring-jcl-5.3.6.jar (with different bytecode)
+nycu-nsi-dds-1    | JarClassLoader: Warning: org/apache/commons/logging/impl/NoOpLog.class in lib/commons-logging-1.2.jar is hidden by lib/spring-jcl-5.3.6.jar (with different bytecode)
+icair-nsi-dds-1   | JarClassLoader: Warning: org/apache/commons/logging/impl/SimpleLog.class in lib/commons-logging-1.2.jar is hidden by lib/spring-jcl-5.3.6.jar (with different bytecode)
+icair-nsi-dds-1   | JarClassLoader: Warning: org/apache/commons/logging/impl/NoOpLog.class in lib/commons-logging-1.2.jar is hidden by lib/spring-jcl-5.3.6.jar (with different bytecode)
+icair-nsi-dds-1   | JarClassLoader: Warning: org/apache/commons/logging/LogFactory.class in lib/commons-logging-1.2.jar is hidden by lib/spring-jcl-5.3.6.jar (with different bytecode)
+icair-nsi-dds-1   | JarClassLoader: Warning: org/apache/commons/logging/LogFactory$1.class in lib/commons-logging-1.2.jar is hidden by lib/spring-jcl-5.3.6.jar (with different bytecode)
+icair-nsi-dds-1   | JarClassLoader: Warning: org/apache/commons/logging/Log.class in lib/commons-logging-1.2.jar is hidden by lib/spring-jcl-5.3.6.jar (with different bytecode)
+icair-nsi-dds-1   | JarClassLoader: Warning: module-info.class in lib/lombok-1.18.22.jar is hidden by lib/jakarta.json-api-2.0.0.jar (with different bytecode)
+icair-nsi-dds-1   | WARNING: An illegal reflective access operation has occurred
+icair-nsi-dds-1   | WARNING: Illegal reflective access by net.es.nsi.dds.server.Main (jar:file:/nsi-dds/dds.jar!/main/nsi-dds-1.1.0-SNAPSHOT.jar) to field sun.management.RuntimeImpl.jvm
+icair-nsi-dds-1   | WARNING: Please consider reporting this to the maintainers of net.es.nsi.dds.server.Main
+icair-nsi-dds-1   | WARNING: Use --illegal-access=warn to enable warnings of further illegal reflective access operations
+icair-nsi-dds-1   | WARNING: All illegal access operations will be denied in a future release
+icair-nsi-dds-1   | Mar 20, 2025 8:28:54 AM org.glassfish.grizzly.http.server.NetworkListener start
+icair-nsi-dds-1   | INFO: Started listener bound to [0.0.0.0:8401]
+icair-nsi-dds-1   | Mar 20, 2025 8:28:54 AM org.glassfish.grizzly.http.server.HttpServer start
+icair-nsi-dds-1   | INFO: [HttpServer] Started.
+icair-nsi-dds-1   | [ERROR] [03/20/2025 08:29:15.807] [NSI-DISCOVERY-akka.actor.default-dispatcher-2] [akka://NSI-DISCOVERY/user/discovery-registrationRouter/$a] org.apache.http.conn.ConnectTimeoutException: Connect to nycu-nsi-dds:8401 [nycu-nsi-dds/172.19.0.7] failed: Read timed out
+icair-nsi-dds-1   | jakarta.ws.rs.ProcessingException: org.apache.http.conn.ConnectTimeoutException: Connect to nycu-nsi-dds:8401 [nycu-nsi-dds/172.19.0.7] failed: Read timed out
+icair-nsi-dds-1   | 	at org.glassfish.jersey.apache.connector.ApacheConnector.apply(ApacheConnector.java:531)
+icair-nsi-dds-1   | 	at org.glassfish.jersey.client.ClientRuntime.invoke(ClientRuntime.java:297)
+icair-nsi-dds-1   | 	at org.glassfish.jersey.client.JerseyInvocation.lambda$invoke$0(JerseyInvocation.java:662)
+icair-nsi-dds-1   | 	at org.glassfish.jersey.client.JerseyInvocation.call(JerseyInvocation.java:697)
+nycu-nsi-supa-1  | [2m2025-03-20 08:28:45[0m [[32m[1minfo     [0m] [1mUsing pip installed version of env file.[0m [[34m[1msupa[0m] [36mpath[0m=[35m/usr/local/etc/supa/supa.env[0m
+nycu-nsi-supa-1   | [2m2025-03-20 08:28:45[0m [[32m[1minfo     [0m] [1mStarting SuPA 0.2.2.dev1 using Python 3.8.20 (CPython) on a1cb97c8c174[0m [[34m[1msupa[0m] 
+nycu-nsi-supa-1   | [2m2025-03-20 08:28:45[0m [[32m[1minfo     [0m] [1mResolved `database_file`.     [0m [[34m[1msupa[0m] [36mconfigured_database_file[0m=[35msupa.db[0m [36mresolved_database_file[0m=[35m/usr/local/var/db/supa.db[0m
+nycu-nsi-supa-1   | [2m2025-03-20 08:28:45[0m [[33m[1mwarning  [0m] [1m`database_file` did not exist. Created new SQLite DB file. Is this really what you wanted?[0m [[34m[1msupa[0m] [36mdatabase_file[0m=[35mPosixPath('/usr/local/var/db/supa.db')[0m
+nycu-nsi-supa-1   | [2m2025-03-20 08:28:45[0m [[32m[1mdebug    [0m] [1mSet default options for SQLite database.[0m [[34m[1msupa.db.session[0m] [36mauto_vacuum[0m=[35mINCREMENTAL[0m [36mforeign_keys[0m=[35mON[0m [36mjournal_mode[0m=[35mWAL[0m
+nycu-nsi-supa-1   | [2m2025-03-20 08:28:45[0m [[32m[1mdebug    [0m] [1mbackend import path           [0m [[34m[1msupa[0m] [36mpath[0m=[35m['/usr/local/lib/python3.8/src/supa/nrm/backends', '/usr/local/bin', '/usr/local/src/supa', '/usr/local/etc/supa', '/usr/local/src/supa/src/supa/nrm/backends', '/usr/local/lib/python38.zip', '/usr/local/lib/python3.8', '/usr/local/lib/python3.8/lib-dynload', '/usr/local/lib/python3.8/site-packages', '/usr/local/src/supa/src'][0m
+nycu-nsi-supa-1   | [2m2025-03-20 08:28:45[0m [[32m[1minfo     [0m] [1msuccessfully loaded NRM backend[0m [[34m[1msupa[0m] [36mbackend[0m=[35myaml_topology_test[0m
+nycu-nsi-supa-1   | [2m2025-03-20 08:28:45[0m [[32m[1minfo     [0m] [1mConfiguring scheduler executor.[0m [[34m[1msupa[0m] [36mscheduler_max_workers[0m=[35m12[0m
+nycu-nsi-supa-1   | [2m2025-03-20 08:28:46[0m [[32m[1minfo     [0m] [1m[20/Mar/2025:08:28:46] ENGINE Bus STARTING[0m [[34m[1mcherrypy.error[0m] 
+nycu-nsi-supa-1   | [2m2025-03-20 08:28:46[0m [[32m[1minfo     [0m] [1m[20/Mar/2025:08:28:46] ENGINE Serving on http://0.0.0.0:4321[0m [[34m[1mcherrypy.error[0m] 
+nycu-nsi-supa-1   | [2m2025-03-20 08:28:46[0m [[32m[1minfo     [0m] [1m[20/Mar/2025:08:28:46] ENGINE Bus STARTED[0m [[34m[1mcherrypy.error[0m] 
+nycu-nsi-supa-1   | [2m2025-03-20 08:28:46[0m [[32m[1minfo     [0m] [1mStarted Connection Provider gRPC Service.[0m [[34m[1msupa.main[0m] [36mgrpc_server_insecure_host[0m=[35m0.0.0.0[0m [36mgrpc_server_insecure_port[0m=[35m50051[0m [36mgrpc_server_max_workers[0m=[35m8[0m
+nycu-nsi-supa-1   | [2m2025-03-20 08:28:46[0m [[32m[1mdebug    [0m] [1mSet default options for SQLite database.[0m [[34m[1msupa.db.session[0m] [36mauto_vacuum[0m=[35mINCREMENTAL[0m [36mforeign_keys[0m=[35mON[0m [36mjournal_mode[0m=[35mWAL[0m
+nycu-nsi-supa-1   | [2m2025-03-20 08:28:46[0m [[32m[1mdebug    [0m] [1mSet default options for SQLite database.[0m [[34m[1msupa.db.session[0m] [36mauto_vacuum[0m=[35mINCREMENTAL[0m [36mforeign_keys[0m=[35mON[0m [36mjournal_mode[0m=[35mWAL[0m
+nycu-nsi-supa-1   | [2m2025-03-20 08:28:46[0m [[32m[1mdebug    [0m] [1mSet default options for SQLite database.[0m [[34m[1msupa.db.session[0m] [36mauto_vacuum[0m=[35mINCREMENTAL[0m [36mforeign_keys[0m=[35mON[0m [36mjournal_mode[0m=[35mWAL[0m
+nycu-nsi-supa-1   | [2m2025-03-20 08:28:46[0m [[32m[1mdebug    [0m] [1mSet default options for SQLite database.[0m [[34m[1msupa.db.session[0m] [36mauto_vacuum[0m=[35mINCREMENTAL[0m [36mforeign_keys[0m=[35mON[0m [36mjournal_mode[0m=[35mWAL[0m
+nycu-nsi-supa-1   | [2m2025-03-20 08:28:46[0m [[32m[1mdebug    [0m] [1mSet default options for SQLite database.[0m [[34m[1msupa.db.session[0m] [36mauto_vacuum[0m=[35mINCREMENTAL[0m [36mforeign_keys[0m=[35mON[0m [36mjournal_mode[0m=[35mWAL[0m
+nycu-nsi-supa-1   | [2m2025-03-20 08:28:46[0m [[32m[1mdebug    [0m] [1mSet default options for SQLite database.[0m [[34m[1msupa.db.session[0m] [36mauto_vacuum[0m=[35mINCREMENTAL[0m [36mforeign_keys[0m=[35mON[0m [36mjournal_mode[0m=[35mWAL[0m
+nycu-nsi-supa-1   | [2m2025-03-20 08:28:46[0m [[32m[1mdebug    [0m] [1mSet default options for SQLite database.[0m [[34m[1msupa.db.session[0m] [36mauto_vacuum[0m=[35mINCREMENTAL[0m [36mforeign_keys[0m=[35mON[0m [36mjournal_mode[0m=[35mWAL[0m
+nycu-nsi-supa-1   | [2m2025-03-20 08:28:46[0m [[32m[1mdebug    [0m] [1mSet default options for SQLite database.[0m [[34m[1msupa.db.session[0m] [36mauto_vacuum[0m=[35mINCREMENTAL[0m [36mforeign_keys[0m=[35mON[0m [36mjournal_mode[0m=[35mWAL[0m
+nycu-nsi-supa-1   | [2m2025-03-20 08:28:46[0m [[32m[1mdebug    [0m] [1mSet default options for SQLite database.[0m [[34m[1msupa.db.session[0m] [36mauto_vacuum[0m=[35mINCREMENTAL[0m [36mforeign_keys[0m=[35mON[0m [36mjournal_mode[0m=[35mWAL[0m
+nycu-nsi-supa-1   | [2m2025-03-20 08:28:46[0m [[32m[1mdebug    [0m] [1mSet default options for SQLite database.[0m [[34m[1msupa.db.session[0m] [36mauto_vacuum[0m=[35mINCREMENTAL[0m [36mforeign_keys[0m=[35mON[0m [36mjournal_mode[0m=[35mWAL[0m
+nycu-nsi-supa-1   | [2m2025-03-20 08:28:46[0m [[32m[1mdebug    [0m] [1mSet default options for SQLite database.[0m [[34m[1msupa.db.session[0m] [36mauto_vacuum[0m=[35mINCREMENTAL[0m [36mforeign_keys[0m=[35mON[0m [36mjournal_mode[0m=[35mWAL[0m
+nycu-nsi-supa-1   | [2m2025-03-20 08:28:46[0m [[32m[1minfo     [0m] [1mRecovering jobs.              [0m [[34m[1msupa[0m] [36mnum_recovered_jobs[0m=[35m0[0m
+nycu-nsi-supa-1   | [2m2025-03-20 08:28:55[0m [[32m[1minfo     [0m] [1m172.19.0.7 - - "GET /discovery HTTP/1.1" 200 1616 "" "Jersey/3.0.3 (Apache HttpClient 4.5.13)"[0m [[34m[1mcherrypy.access.140712953807008[0m] 
+nycu-nsi-supa-1   | [2m2025-03-20 08:28:58[0m [[32m[1mdebug    [0m] [1mrefresh topology lock         [0m [[34m[1msupa.documents.topology[0m] [36mstate[0m=[35macquired[0m
+nycu-nsi-supa-1   | [2m2025-03-20 08:28:58[0m [[32m[1mdebug    [0m] [1mrefreshing topology           [0m [[34m[1msupa.documents.topology[0m] [36mlast_refresh[0m=[35m1970-01-01T00:00:00+00:00[0m [36mnow[0m=[35m2025-03-20T08:28:58+00:00[0m
+nycu-nsi-supa-1   | [2m2025-03-20 08:28:58[0m [[32m[1minfo     [0m] [1mget topology from yaml_topology_test NRM[0m [[34m[1msupa.nrm.backend[0m] [36mbackend[0m=[35myaml_topology_test[0m [36mprimitive[0m=[35mtopology[0m
+nycu-nsi-supa-1   | [2m2025-03-20 08:28:58[0m [[32m[1minfo     [0m] [1mRead STPs config              [0m [[34m[1msupa.nrm.backend[0m] [36mbackend[0m=[35myaml_topology_test[0m [36mpath[0m=[35m/usr/local/src/supa/src/supa/nrm/backends/yaml_topology_test_configs/stps_config.yml[0m
+nycu-nsi-supa-1   | [2m2025-03-20 08:28:58[0m [[32m[1minfo     [0m] [1mSTP list                      [0m [[34m[1msupa.nrm.backend[0m] [36mbackend[0m=[35myaml_topology_test[0m [36mstp_list[0m=[35m[STP(stp_id='icair-arista', port_id='Et1', vlans='1700-1799', description='VLAN range 1700-1799, to iCAIR STP nycu-sw.', is_alias_in='', is_alias_out='', bandwidth=1000000000, enabled=True, topology='topology'), STP(stp_id='icair-test', port_id='Et2', vlans='1700-1799', description='VLAN range 1700-1799, to iCAIR STP nycu-test.', is_alias_in='', is_alias_out='', bandwidth=1000000000, enabled=True, topology='topology')][0m
+nycu-nsi-supa-1   | [2m2025-03-20 08:28:58[0m [[32m[1mdebug    [0m] [1mSet default options for SQLite database.[0m [[34m[1msupa.db.session[0m] [36mauto_vacuum[0m=[35mINCREMENTAL[0m [36mforeign_keys[0m=[35mON[0m [36mjournal_mode[0m=[35mWAL[0m
+nycu-nsi-supa-1   | [2m2025-03-20 08:28:58[0m [[32m[1minfo     [0m] [1madd new STP                   [0m [[34m[1msupa.documents.topology[0m] [36mport_id[0m=[35mEt1[0m [36mstp_id[0m=[35micair-arista[0m [36mvlans[0m=[35m1700-1799[0m
+nycu-nsi-supa-1   | [2m2025-03-20 08:28:58[0m [[32m[1minfo     [0m] [1madd new STP                   [0m [[34m[1msupa.documents.topology[0m] [36mport_id[0m=[35mEt2[0m [36mstp_id[0m=[35micair-test[0m [36mvlans[0m=[35m1700-1799[0m
+nycu-nsi-supa-1   | [2m2025-03-20 08:28:58[0m [[32m[1mdebug    [0m] [1mrefresh topology lock         [0m [[34m[1msupa.documents.topology[0m] [36mstate[0m=[35mreleased[0m
+nycu-nsi-supa-1   | [2m2025-03-20 08:28:58[0m [[32m[1mdebug    [0m] [1mSet default options for SQLite database.[0m [[34m[1msupa.db.session[0m] [36mauto_vacuum[0m=[35mINCREMENTAL[0m [36mforeign_keys[0m=[35mON[0m [36mjournal_mode[0m=[35mWAL[0m
+nycu-nsi-supa-1   | [2m2025-03-20 08:28:58[0m [[32m[1minfo     [0m] [1m172.19.0.1 - - "GET /topology HTTP/1.1" 200 4818 "" "Jersey/3.0.3 (Apache HttpClient 4.5.13)"[0m [[34m[1mcherrypy.access.140712950068800[0m] 
+icair-nsi-supa-1  | [2m2025-03-20 08:28:45[0m [[32m[1minfo     [0m] [1mResolved `database_file`.     [0m [[34m[1msupa[0m] [36mconfigured_database_file[0m=[35msupa.db[0m [36mresolved_database_file[0m=[35m/usr/local/var/db/supa.db[0m
+icair-nsi-supa-1  | [2m2025-03-20 08:28:45[0m [[33m[1mwarning  [0m] [1m`database_file` did not exist. Created new SQLite DB file. Is this really what you wanted?[0m [[34m[1msupa[0m] [36mdatabase_file[0m=[35mPosixPath('/usr/local/var/db/supa.db')[0m
+icair-nsi-supa-1  | [2m2025-03-20 08:28:45[0m [[32m[1mdebug    [0m] [1mSet default options for SQLite database.[0m [[34m[1msupa.db.session[0m] [36mauto_vacuum[0m=[35mINCREMENTAL[0m [36mforeign_keys[0m=[35mON[0m [36mjournal_mode[0m=[35mWAL[0m
+icair-nsi-supa-1  | [2m2025-03-20 08:28:45[0m [[32m[1mdebug    [0m] [1mbackend import path           [0m [[34m[1msupa[0m] [36mpath[0m=[35m['/usr/local/lib/python3.8/src/supa/nrm/backends', '/usr/local/bin', '/usr/local/src/supa', '/usr/local/etc/supa', '/usr/local/src/supa/src/supa/nrm/backends', '/usr/local/lib/python38.zip', '/usr/local/lib/python3.8', '/usr/local/lib/python3.8/lib-dynload', '/usr/local/lib/python3.8/site-packages', '/usr/local/src/supa/src'][0m
+icair-nsi-supa-1  | [2m2025-03-20 08:28:45[0m [[32m[1minfo     [0m] [1msuccessfully loaded NRM backend[0m [[34m[1msupa[0m] [36mbackend[0m=[35myaml_topology_test[0m
+icair-nsi-supa-1  | [2m2025-03-20 08:28:45[0m [[32m[1minfo     [0m] [1mConfiguring scheduler executor.[0m [[34m[1msupa[0m] [36mscheduler_max_workers[0m=[35m12[0m
+icair-nsi-supa-1  | [2m2025-03-20 08:28:45[0m [[32m[1minfo     [0m] [1m[20/Mar/2025:08:28:45] ENGINE Bus STARTING[0m [[34m[1mcherrypy.error[0m] 
+icair-nsi-supa-1  | [2m2025-03-20 08:28:46[0m [[32m[1minfo     [0m] [1m[20/Mar/2025:08:28:46] ENGINE Serving on http://0.0.0.0:4321[0m [[34m[1mcherrypy.error[0m] 
+icair-nsi-supa-1  | [2m2025-03-20 08:28:46[0m [[32m[1minfo     [0m] [1m[20/Mar/2025:08:28:46] ENGINE Bus STARTED[0m [[34m[1mcherrypy.error[0m] 
+icair-nsi-supa-1  | [2m2025-03-20 08:28:46[0m [[32m[1minfo     [0m] [1mStarted Connection Provider gRPC Service.[0m [[34m[1msupa.main[0m] [36mgrpc_server_insecure_host[0m=[35m0.0.0.0[0m [36mgrpc_server_insecure_port[0m=[35m50051[0m [36mgrpc_server_max_workers[0m=[35m8[0m
+icair-nsi-supa-1  | [2m2025-03-20 08:28:46[0m [[32m[1mdebug    [0m] [1mSet default options for SQLite database.[0m [[34m[1msupa.db.session[0m] [36mauto_vacuum[0m=[35mINCREMENTAL[0m [36mforeign_keys[0m=[35mON[0m [36mjournal_mode[0m=[35mWAL[0m
+icair-nsi-supa-1  | [2m2025-03-20 08:28:46[0m [[32m[1mdebug    [0m] [1mSet default options for SQLite database.[0m [[34m[1msupa.db.session[0m] [36mauto_vacuum[0m=[35mINCREMENTAL[0m [36mforeign_keys[0m=[35mON[0m [36mjournal_mode[0m=[35mWAL[0m
+icair-nsi-supa-1  | [2m2025-03-20 08:28:46[0m [[32m[1mdebug    [0m] [1mSet default options for SQLite database.[0m [[34m[1msupa.db.session[0m] [36mauto_vacuum[0m=[35mINCREMENTAL[0m [36mforeign_keys[0m=[35mON[0m [36mjournal_mode[0m=[35mWAL[0m
+icair-nsi-supa-1  | [2m2025-03-20 08:28:46[0m [[32m[1mdebug    [0m] [1mSet default options for SQLite database.[0m [[34m[1msupa.db.session[0m] [36mauto_vacuum[0m=[35mINCREMENTAL[0m [36mforeign_keys[0m=[35mON[0m [36mjournal_mode[0m=[35mWAL[0m
+icair-nsi-supa-1  | [2m2025-03-20 08:28:46[0m [[32m[1mdebug    [0m] [1mSet default options for SQLite database.[0m [[34m[1msupa.db.session[0m] [36mauto_vacuum[0m=[35mINCREMENTAL[0m [36mforeign_keys[0m=[35mON[0m [36mjournal_mode[0m=[35mWAL[0m
+icair-nsi-supa-1  | [2m2025-03-20 08:28:46[0m [[32m[1mdebug    [0m] [1mSet default options for SQLite database.[0m [[34m[1msupa.db.session[0m] [36mauto_vacuum[0m=[35mINCREMENTAL[0m [36mforeign_keys[0m=[35mON[0m [36mjournal_mode[0m=[35mWAL[0m
+icair-nsi-supa-1  | [2m2025-03-20 08:28:46[0m [[32m[1mdebug    [0m] [1mSet default options for SQLite database.[0m [[34m[1msupa.db.session[0m] [36mauto_vacuum[0m=[35mINCREMENTAL[0m [36mforeign_keys[0m=[35mON[0m [36mjournal_mode[0m=[35mWAL[0m
+icair-nsi-supa-1  | [2m2025-03-20 08:28:46[0m [[32m[1mdebug    [0m] [1mSet default options for SQLite database.[0m [[34m[1msupa.db.session[0m] [36mauto_vacuum[0m=[35mINCREMENTAL[0m [36mforeign_keys[0m=[35mON[0m [36mjournal_mode[0m=[35mWAL[0m
+icair-nsi-supa-1  | [2m2025-03-20 08:28:46[0m [[32m[1mdebug    [0m] [1mSet default options for SQLite database.[0m [[34m[1msupa.db.session[0m] [36mauto_vacuum[0m=[35mINCREMENTAL[0m [36mforeign_keys[0m=[35mON[0m [36mjournal_mode[0m=[35mWAL[0m
+icair-nsi-supa-1  | [2m2025-03-20 08:28:46[0m [[32m[1mdebug    [0m] [1mSet default options for SQLite database.[0m [[34m[1msupa.db.session[0m] [36mauto_vacuum[0m=[35mINCREMENTAL[0m [36mforeign_keys[0m=[35mON[0m [36mjournal_mode[0m=[35mWAL[0m
+icair-nsi-supa-1  | [2m2025-03-20 08:28:46[0m [[32m[1mdebug    [0m] [1mSet default options for SQLite database.[0m [[34m[1msupa.db.session[0m] [36mauto_vacuum[0m=[35mINCREMENTAL[0m [36mforeign_keys[0m=[35mON[0m [36mjournal_mode[0m=[35mWAL[0m
+icair-nsi-supa-1  | [2m2025-03-20 08:28:46[0m [[32m[1minfo     [0m] [1mRecovering jobs.              [0m [[34m[1msupa[0m] [36mnum_recovered_jobs[0m=[35m0[0m
+icair-nsi-supa-1  | [2m2025-03-20 08:28:54[0m [[32m[1minfo     [0m] [1m172.19.0.5 - - "GET /discovery HTTP/1.1" 200 1618 "" "Jersey/3.0.3 (Apache HttpClient 4.5.13)"[0m [[34m[1mcherrypy.access.140113655022016[0m] 
+icair-nsi-supa-1  | [2m2025-03-20 08:28:57[0m [[32m[1mdebug    [0m] [1mrefresh topology lock         [0m [[34m[1msupa.documents.topology[0m] [36mstate[0m=[35macquired[0m
+icair-nsi-supa-1  | [2m2025-03-20 08:28:57[0m [[32m[1mdebug    [0m] [1mrefreshing topology           [0m [[34m[1msupa.documents.topology[0m] [36mlast_refresh[0m=[35m1970-01-01T00:00:00+00:00[0m [36mnow[0m=[35m2025-03-20T08:28:57+00:00[0m
+icair-nsi-supa-1  | [2m2025-03-20 08:28:57[0m [[32m[1minfo     [0m] [1mget topology from yaml_topology_test NRM[0m [[34m[1msupa.nrm.backend[0m] [36mbackend[0m=[35myaml_topology_test[0m [36mprimitive[0m=[35mtopology[0m
+icair-nsi-supa-1  | [2m2025-03-20 08:28:57[0m [[32m[1minfo     [0m] [1mRead STPs config              [0m [[34m[1msupa.nrm.backend[0m] [36mbackend[0m=[35myaml_topology_test[0m [36mpath[0m=[35m/usr/local/src/supa/src/supa/nrm/backends/yaml_topology_test_configs/stps_config.yml[0m
+icair-nsi-supa-1  | [2m2025-03-20 08:28:57[0m [[32m[1minfo     [0m] [1mSTP list                      [0m [[34m[1msupa.nrm.backend[0m] [36mbackend[0m=[35myaml_topology_test[0m [36mstp_list[0m=[35m[STP(stp_id='nycu-sw', port_id='Et1', vlans='1700-1799', description='VLAN range 1700-1799, to NYCU STP icair-arista.', is_alias_in='', is_alias_out='', bandwidth=1000000000, enabled=True, topology='topology'), STP(stp_id='nycu-test', port_id='Et2', vlans='1700-1799', description='VLAN range 1700-1799, to NYCU STP icair-test.', is_alias_in='', is_alias_out='', bandwidth=1000000000, enabled=True, topology='topology')][0m
+icair-nsi-supa-1  | [2m2025-03-20 08:28:57[0m [[32m[1mdebug    [0m] [1mSet default options for SQLite database.[0m [[34m[1msupa.db.session[0m] [36mauto_vacuum[0m=[35mINCREMENTAL[0m [36mforeign_keys[0m=[35mON[0m [36mjournal_mode[0m=[35mWAL[0m
+icair-nsi-supa-1  | [2m2025-03-20 08:28:57[0m [[32m[1minfo     [0m] [1madd new STP                   [0m [[34m[1msupa.documents.topology[0m] [36mport_id[0m=[35mEt1[0m [36mstp_id[0m=[35mnycu-sw[0m [36mvlans[0m=[35m1700-1799[0m
+icair-nsi-supa-1  | [2m2025-03-20 08:28:57[0m [[32m[1minfo     [0m] [1madd new STP                   [0m [[34m[1msupa.documents.topology[0m] [36mport_id[0m=[35mEt2[0m [36mstp_id[0m=[35mnycu-test[0m [36mvlans[0m=[35m1700-1799[0m
+icair-nsi-supa-1  | [2m2025-03-20 08:28:57[0m [[32m[1mdebug    [0m] [1mrefresh topology lock         [0m [[34m[1msupa.documents.topology[0m] [36mstate[0m=[35mreleased[0m
+icair-nsi-supa-1  | [2m2025-03-20 08:28:57[0m [[32m[1mdebug    [0m] [1mSet default options for SQLite database.[0m [[34m[1msupa.db.session[0m] [36mauto_vacuum[0m=[35mINCREMENTAL[0m [36mforeign_keys[0m=[35mON[0m [36mjournal_mode[0m=[35mWAL[0m
+icair-nsi-supa-1  | [2m2025-03-20 08:28:57[0m [[32m[1minfo     [0m] [1m172.19.0.1 - - "GET /topology HTTP/1.1" 200 4818 "" "Jersey/3.0.3 (Apache HttpClient 4.5.13)"[0m [[34m[1mcherrypy.access.140113652406256[0m] 
+nycu-nsi-dds-1    | JarClassLoader: Warning: org/apache/commons/logging/LogFactory.class in lib/commons-logging-1.2.jar is hidden by lib/spring-jcl-5.3.6.jar (with different bytecode)
+nycu-nsi-dds-1    | JarClassLoader: Warning: org/apache/commons/logging/LogFactory$1.class in lib/commons-logging-1.2.jar is hidden by lib/spring-jcl-5.3.6.jar (with different bytecode)
+nycu-nsi-dds-1    | JarClassLoader: Warning: org/apache/commons/logging/Log.class in lib/commons-logging-1.2.jar is hidden by lib/spring-jcl-5.3.6.jar (with different bytecode)
+nycu-nsi-dds-1    | JarClassLoader: Warning: module-info.class in lib/lombok-1.18.22.jar is hidden by lib/jakarta.json-api-2.0.0.jar (with different bytecode)
+nycu-nsi-dds-1    | WARNING: An illegal reflective access operation has occurred
+nycu-nsi-dds-1    | WARNING: Illegal reflective access by net.es.nsi.dds.server.Main (jar:file:/nsi-dds/dds.jar!/main/nsi-dds-1.1.0-SNAPSHOT.jar) to field sun.management.RuntimeImpl.jvm
+nycu-nsi-dds-1    | WARNING: Please consider reporting this to the maintainers of net.es.nsi.dds.server.Main
+nycu-nsi-dds-1    | WARNING: Use --illegal-access=warn to enable warnings of further illegal reflective access operations
+nycu-nsi-dds-1    | WARNING: All illegal access operations will be denied in a future release
+nycu-nsi-dds-1    | Mar 20, 2025 8:28:54 AM org.glassfish.grizzly.http.server.NetworkListener start
+nycu-nsi-dds-1    | INFO: Started listener bound to [0.0.0.0:8401]
+nycu-nsi-dds-1    | Mar 20, 2025 8:28:54 AM org.glassfish.grizzly.http.server.HttpServer start
+nycu-nsi-dds-1    | INFO: [HttpServer] Started.
+nycu-nsi-dds-1    | [ERROR] [03/20/2025 08:29:16.606] [NSI-DISCOVERY-akka.actor.default-dispatcher-5] [akka://NSI-DISCOVERY/user/discovery-registrationRouter/$a] org.apache.http.conn.ConnectTimeoutException: Connect to icair-nsi-dds:8401 [icair-nsi-dds/172.19.0.5] failed: Read timed out
+nycu-nsi-dds-1    | jakarta.ws.rs.ProcessingException: org.apache.http.conn.ConnectTimeoutException: Connect to icair-nsi-dds:8401 [icair-nsi-dds/172.19.0.5] failed: Read timed out
+nycu-nsi-dds-1    | 	at org.glassfish.jersey.apache.connector.ApacheConnector.apply(ApacheConnector.java:531)
+nycu-nsi-dds-1    | 	at org.glassfish.jersey.client.ClientRuntime.invoke(ClientRuntime.java:297)
+nycu-nsi-dds-1    | 	at org.glassfish.jersey.client.JerseyInvocation.lambda$invoke$0(JerseyInvocation.java:662)
+nycu-nsi-dds-1    | 	at org.glassfish.jersey.client.JerseyInvocation.call(JerseyInvocation.java:697)
+nycu-nsi-dds-1    | 	at org.glassfish.jersey.client.JerseyInvocation.lambda$runInScope$3(JerseyInvocation.java:691)
+nycu-nsi-dds-1    | 	at org.glassfish.jersey.internal.Errors.process(Errors.java:292)
+nycu-nsi-dds-1    | 	at org.glassfish.jersey.internal.Errors.process(Errors.java:274)
+nycu-nsi-dds-1    | 	at org.glassfish.jersey.internal.Errors.process(Errors.java:205)
+nycu-nsi-dds-1    | 	at org.glassfish.jersey.process.internal.RequestScope.runInScope(RequestScope.java:390)
+nycu-nsi-dds-1    | 	at org.glassfish.jersey.client.JerseyInvocation.runInScope(JerseyInvocation.java:691)
+nycu-nsi-dds-1    | 	at org.glassfish.jersey.client.JerseyInvocation.invoke(JerseyInvocation.java:661)
+nycu-nsi-dds-1    | 	at org.glassfish.jersey.client.JerseyInvocation$Builder.method(JerseyInvocation.java:439)
+nycu-nsi-dds-1    | 	at org.glassfish.jersey.client.JerseyInvocation$Builder.post(JerseyInvocation.java:345)
+nycu-nsi-dds-1    | 	at net.es.nsi.dds.actors.RegistrationActor.register(RegistrationActor.java:141)
+nycu-nsi-dds-1    | 	at net.es.nsi.dds.actors.RegistrationActor.onReceive(RegistrationActor.java:73)
+nycu-nsi-dds-1    | 	at akka.actor.UntypedActor$$anonfun$receive$1.applyOrElse(UntypedActor.scala:167)
+nycu-nsi-dds-1    | 	at akka.actor.Actor$class.aroundReceive(Actor.scala:467)
+nycu-nsi-dds-1    | 	at akka.actor.UntypedActor.aroundReceive(UntypedActor.scala:97)
+nycu-nsi-dds-1    | 	at akka.actor.ActorCell.receiveMessage(ActorCell.scala:516)
+nycu-nsi-dds-1    | 	at akka.actor.ActorCell.invoke(ActorCell.scala:487)
+nycu-nsi-dds-1    | 	at akka.dispatch.Mailbox.processMailbox(Mailbox.scala:238)
+nycu-nsi-dds-1    | 	at akka.dispatch.Mailbox.run(Mailbox.scala:220)
+nycu-nsi-dds-1    | 	at akka.dispatch.ForkJoinExecutorConfigurator$AkkaForkJoinTask.exec(AbstractDispatcher.scala:397)
+nycu-nsi-dds-1    | 	at scala.concurrent.forkjoin.ForkJoinTask.doExec(ForkJoinTask.java:260)
+nycu-nsi-dds-1    | 	at scala.concurrent.forkjoin.ForkJoinPool$WorkQueue.runTask(ForkJoinPool.java:1339)
+nycu-nsi-dds-1    | 	at scala.concurrent.forkjoin.ForkJoinPool.runWorker(ForkJoinPool.java:1979)
+nycu-nsi-dds-1    | 	at scala.concurrent.forkjoin.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:107)
+nycu-nsi-dds-1    | Caused by: org.apache.http.conn.ConnectTimeoutException: Connect to icair-nsi-dds:8401 [icair-nsi-dds/172.19.0.5] failed: Read timed out
+nycu-nsi-dds-1    | 	at org.apache.http.impl.conn.DefaultHttpClientConnectionOperator.connect(DefaultHttpClientConnectionOperator.java:151)
+nycu-nsi-dds-1    | 	at org.apache.http.impl.conn.PoolingHttpClientConnectionManager.connect(PoolingHttpClientConnectionManager.java:376)
+nycu-nsi-dds-1    | 	at org.apache.http.impl.execchain.MainClientExec.establishRoute(MainClientExec.java:393)
+nycu-nsi-dds-1    | 	at org.apache.http.impl.execchain.MainClientExec.execute(MainClientExec.java:236)
+nycu-nsi-dds-1    | 	at org.apache.http.impl.execchain.ProtocolExec.execute(ProtocolExec.java:186)
+nycu-nsi-dds-1    | 	at org.apache.http.impl.execchain.RetryExec.execute(RetryExec.java:89)
+nycu-nsi-dds-1    | 	at org.apache.http.impl.execchain.RedirectExec.execute(RedirectExec.java:110)
+nycu-nsi-dds-1    | 	at org.apache.http.impl.client.InternalHttpClient.doExecute(InternalHttpClient.java:185)
+nycu-nsi-dds-1    | 	at org.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:72)
+nycu-nsi-dds-1    | 	at org.glassfish.jersey.apache.connector.ApacheConnector.apply(ApacheConnector.java:483)
+nycu-nsi-dds-1    | 	... 26 more
+nycu-nsi-dds-1    | Caused by: java.net.SocketTimeoutException: Read timed out
+nycu-nsi-dds-1    | 	at java.base/sun.nio.ch.NioSocketImpl.timedRead(NioSocketImpl.java:283)
+nycu-nsi-dds-1    | 	at java.base/sun.nio.ch.NioSocketImpl.implRead(NioSocketImpl.java:309)
+nycu-nsi-dds-1    | 	at java.base/sun.nio.ch.NioSocketImpl.read(NioSocketImpl.java:350)
+nycu-nsi-dds-1    | 	at java.base/sun.nio.ch.NioSocketImpl$1.read(NioSocketImpl.java:803)
+nycu-nsi-dds-1    | 	at java.base/java.net.Socket$SocketInputStream.read(Socket.java:981)
+nycu-nsi-dds-1    | 	at java.base/sun.security.ssl.SSLSocketInputRecord.read(SSLSocketInputRecord.java:478)
+nycu-nsi-dds-1    | 	at java.base/sun.security.ssl.SSLSocketInputRecord.readHeader(SSLSocketInputRecord.java:472)
+nycu-nsi-dds-1    | 	at java.base/sun.security.ssl.SSLSocketInputRecord.decode(SSLSocketInputRecord.java:160)
+nycu-nsi-dds-1    | 	at java.base/sun.security.ssl.SSLTransport.decode(SSLTransport.java:110)
+nycu-nsi-dds-1    | 	at java.base/sun.security.ssl.SSLSocketImpl.decode(SSLSocketImpl.java:1488)
+nycu-nsi-dds-1    | 	at java.base/sun.security.ssl.SSLSocketImpl.readHandshakeRecord(SSLSocketImpl.java:1394)
+nycu-nsi-dds-1    | 	at java.base/sun.security.ssl.SSLSocketImpl.startHandshake(SSLSocketImpl.java:441)
+icair-nsi-dds-1   | 	at org.glassfish.jersey.client.JerseyInvocation.lambda$runInScope$3(JerseyInvocation.java:691)
+icair-nsi-dds-1   | 	at org.glassfish.jersey.internal.Errors.process(Errors.java:292)
+icair-nsi-dds-1   | 	at org.glassfish.jersey.internal.Errors.process(Errors.java:274)
+icair-nsi-dds-1   | 	at org.glassfish.jersey.internal.Errors.process(Errors.java:205)
+icair-nsi-dds-1   | 	at org.glassfish.jersey.process.internal.RequestScope.runInScope(RequestScope.java:390)
+icair-nsi-dds-1   | 	at org.glassfish.jersey.client.JerseyInvocation.runInScope(JerseyInvocation.java:691)
+icair-nsi-dds-1   | 	at org.glassfish.jersey.client.JerseyInvocation.invoke(JerseyInvocation.java:661)
+icair-nsi-dds-1   | 	at org.glassfish.jersey.client.JerseyInvocation$Builder.method(JerseyInvocation.java:439)
+icair-nsi-dds-1   | 	at org.glassfish.jersey.client.JerseyInvocation$Builder.post(JerseyInvocation.java:345)
+icair-nsi-dds-1   | 	at net.es.nsi.dds.actors.RegistrationActor.register(RegistrationActor.java:141)
+icair-nsi-dds-1   | 	at net.es.nsi.dds.actors.RegistrationActor.onReceive(RegistrationActor.java:73)
+icair-nsi-dds-1   | 	at akka.actor.UntypedActor$$anonfun$receive$1.applyOrElse(UntypedActor.scala:167)
+icair-nsi-dds-1   | 	at akka.actor.Actor$class.aroundReceive(Actor.scala:467)
+icair-nsi-dds-1   | 	at akka.actor.UntypedActor.aroundReceive(UntypedActor.scala:97)
+icair-nsi-dds-1   | 	at akka.actor.ActorCell.receiveMessage(ActorCell.scala:516)
+icair-nsi-dds-1   | 	at akka.actor.ActorCell.invoke(ActorCell.scala:487)
+icair-nsi-dds-1   | 	at akka.dispatch.Mailbox.processMailbox(Mailbox.scala:238)
+icair-nsi-dds-1   | 	at akka.dispatch.Mailbox.run(Mailbox.scala:220)
+icair-nsi-dds-1   | 	at akka.dispatch.ForkJoinExecutorConfigurator$AkkaForkJoinTask.exec(AbstractDispatcher.scala:397)
+icair-nsi-dds-1   | 	at scala.concurrent.forkjoin.ForkJoinTask.doExec(ForkJoinTask.java:260)
+icair-nsi-dds-1   | 	at scala.concurrent.forkjoin.ForkJoinPool$WorkQueue.runTask(ForkJoinPool.java:1339)
+icair-nsi-dds-1   | 	at scala.concurrent.forkjoin.ForkJoinPool.runWorker(ForkJoinPool.java:1979)
+icair-nsi-dds-1   | 	at scala.concurrent.forkjoin.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:107)
+icair-polynsi-1  | 
+icair-polynsi-1   |   .   ____          _            __ _ _
+icair-polynsi-1   |  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+icair-polynsi-1   | ( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+icair-polynsi-1   |  \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+icair-polynsi-1   |   '  |____| .__|_| |_|_| |_\__, | / / / /
+icair-polynsi-1   |  =========|_|==============|___/=/_/_/_/
+icair-polynsi-1   |  :: Spring Boot ::                (v2.5.8)
+icair-polynsi-1   | 
+icair-polynsi-1   | 2025-03-20 08:28:45.223  INFO 7 --- [           main] nl.surf.polynsi.PolyNSIApplication       : Starting PolyNSIApplication v0.2.0 using Java 11.0.16 on 00d397dfff99 with PID 7 (/usr/local/src/polynsi/polynsi.jar started by root in /usr/local/src/polynsi)
+icair-polynsi-1   | 2025-03-20 08:28:45.231  INFO 7 --- [           main] nl.surf.polynsi.PolyNSIApplication       : No active profile set, falling back to default profiles: default
+icair-polynsi-1   | 2025-03-20 08:28:47.748  INFO 7 --- [           main] org.eclipse.jetty.util.log               : Logging initialized @4241ms to org.eclipse.jetty.util.log.Slf4jLog
+icair-polynsi-1   | 2025-03-20 08:28:47.958  INFO 7 --- [           main] o.s.b.w.e.j.JettyServletWebServerFactory : Server initialized with port: 8443
+icair-polynsi-1   | 2025-03-20 08:28:47.961  INFO 7 --- [           main] org.eclipse.jetty.server.Server          : jetty-9.4.44.v20210927; built: 2021-09-27T23:02:44.612Z; git: 8da83308eeca865e495e53ef315a249d63ba9332; jvm 11.0.16+8
+icair-polynsi-1   | 2025-03-20 08:28:48.037  INFO 7 --- [           main] o.e.j.s.h.ContextHandler.application     : Initializing Spring embedded WebApplicationContext
+icair-polynsi-1   | 2025-03-20 08:28:48.038  INFO 7 --- [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2671 ms
+icair-polynsi-1   | 2025-03-20 08:28:48.429  INFO 7 --- [           main] org.eclipse.jetty.server.session         : DefaultSessionIdManager workerName=node0
+icair-polynsi-1   | 2025-03-20 08:28:48.429  INFO 7 --- [           main] org.eclipse.jetty.server.session         : No SessionScavenger set, using defaults
+icair-polynsi-1   | 2025-03-20 08:28:48.433  INFO 7 --- [           main] org.eclipse.jetty.server.session         : node0 Scavenging every 600000ms
+icair-polynsi-1   | 2025-03-20 08:28:48.445  INFO 7 --- [           main] o.e.jetty.server.handler.ContextHandler  : Started o.s.b.w.e.j.JettyEmbeddedWebAppContext@7c1e2a2d{application,/,[file:///tmp/jetty-docbase.8443.12844096064235631776/],AVAILABLE}
+icair-polynsi-1   | 2025-03-20 08:28:48.446  INFO 7 --- [           main] org.eclipse.jetty.server.Server          : Started @4942ms
+icair-polynsi-1   | 2025-03-20 08:28:48.850  INFO 7 --- [           main] n.d.b.g.c.a.GrpcClientAutoConfiguration  : Detected grpc-netty-shaded: Creating ShadedNettyChannelFactory + InProcessChannelFactory
+icair-polynsi-1   | 2025-03-20 08:28:50.615  INFO 7 --- [           main] org.apache.cxf.endpoint.ServerImpl       : Setting the server's publish address to be /connection/provider
+icair-polynsi-1   | 2025-03-20 08:28:50.847  INFO 7 --- [           main] org.apache.cxf.endpoint.ServerImpl       : Setting the server's publish address to be /connection/requester
+icair-polynsi-1   | 2025-03-20 08:28:51.312  INFO 7 --- [           main] g.s.a.GrpcServerFactoryAutoConfiguration : Detected grpc-netty-shaded: Creating ShadedNettyGrpcServerFactory
+icair-polynsi-1   | 2025-03-20 08:28:51.577  INFO 7 --- [           main] o.e.j.s.h.ContextHandler.application     : Initializing Spring DispatcherServlet 'dispatcherServlet'
+icair-polynsi-1   | 2025-03-20 08:28:51.577  INFO 7 --- [           main] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+icair-polynsi-1   | 2025-03-20 08:28:51.583  INFO 7 --- [           main] o.s.web.servlet.DispatcherServlet        : Completed initialization in 6 ms
+icair-polynsi-1   | 2025-03-20 08:28:51.617  INFO 7 --- [           main] o.e.jetty.server.AbstractConnector       : Started ServerConnector@7f0d96f2{HTTP/1.1, (http/1.1)}{0.0.0.0:8443}
+icair-polynsi-1   | 2025-03-20 08:28:51.619  INFO 7 --- [           main] o.s.b.web.embedded.jetty.JettyWebServer  : Jetty started on port(s) 8443 (http/1.1) with context path '/'
+nycu-polynsi-1   | 2025-03-20 08:28:49.026  INFO 7 --- [           main] n.d.b.g.c.a.GrpcClientAutoConfiguration  : Detected grpc-netty-shaded: Creating ShadedNettyChannelFactory + InProcessChannelFactory
+nycu-polynsi-1    | 2025-03-20 08:28:50.861  INFO 7 --- [           main] org.apache.cxf.endpoint.ServerImpl       : Setting the server's publish address to be /connection/provider
+nycu-polynsi-1    | 2025-03-20 08:28:51.079  INFO 7 --- [           main] org.apache.cxf.endpoint.ServerImpl       : Setting the server's publish address to be /connection/requester
+nycu-polynsi-1    | 2025-03-20 08:28:51.574  INFO 7 --- [           main] g.s.a.GrpcServerFactoryAutoConfiguration : Detected grpc-netty-shaded: Creating ShadedNettyGrpcServerFactory
+nycu-polynsi-1    | 2025-03-20 08:28:51.793  INFO 7 --- [           main] o.e.j.s.h.ContextHandler.application     : Initializing Spring DispatcherServlet 'dispatcherServlet'
+nycu-polynsi-1    | 2025-03-20 08:28:51.794  INFO 7 --- [           main] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+nycu-polynsi-1    | 2025-03-20 08:28:51.796  INFO 7 --- [           main] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+nycu-polynsi-1    | 2025-03-20 08:28:51.819  INFO 7 --- [           main] o.e.jetty.server.AbstractConnector       : Started ServerConnector@2c4d1ac{HTTP/1.1, (http/1.1)}{0.0.0.0:8443}
+nycu-polynsi-1    | 2025-03-20 08:28:51.820  INFO 7 --- [           main] o.s.b.web.embedded.jetty.JettyWebServer  : Jetty started on port(s) 8443 (http/1.1) with context path '/'
+nycu-polynsi-1    | 2025-03-20 08:28:51.830  INFO 7 --- [           main] n.d.b.g.s.s.AbstractGrpcServerFactory    : Registered gRPC service: connection.requester.ConnectionRequester, bean: connectionRequesterService, class: nl.surf.polynsi.grpc.connection.requester.ConnectionRequesterService
+nycu-polynsi-1    | 2025-03-20 08:28:51.830  INFO 7 --- [           main] n.d.b.g.s.s.AbstractGrpcServerFactory    : Registered gRPC service: grpc.health.v1.Health, bean: grpcHealthService, class: io.grpc.protobuf.services.HealthServiceImpl
+nycu-polynsi-1    | 2025-03-20 08:28:51.830  INFO 7 --- [           main] n.d.b.g.s.s.AbstractGrpcServerFactory    : Registered gRPC service: grpc.reflection.v1alpha.ServerReflection, bean: protoReflectionService, class: io.grpc.protobuf.services.ProtoReflectionService
+nycu-polynsi-1    | 2025-03-20 08:28:51.948  INFO 7 --- [           main] n.d.b.g.s.s.GrpcServerLifecycle          : gRPC Server started, listening on address: *, port: 9090
+nycu-polynsi-1    | 2025-03-20 08:28:51.965  INFO 7 --- [           main] nl.surf.polynsi.PolyNSIApplication       : Started PolyNSIApplication in 7.66 seconds (JVM running for 8.461)
+nycu-nsi-dds-1    | 	at java.base/sun.security.ssl.SSLSocketImpl.startHandshake(SSLSocketImpl.java:412)
+nycu-nsi-dds-1    | 	at org.apache.http.conn.ssl.SSLConnectionSocketFactory.createLayeredSocket(SSLConnectionSocketFactory.java:436)
+nycu-nsi-dds-1    | 	at org.apache.http.conn.ssl.SSLConnectionSocketFactory.connectSocket(SSLConnectionSocketFactory.java:384)
+nycu-nsi-dds-1    | 	at org.apache.http.impl.conn.DefaultHttpClientConnectionOperator.connect(DefaultHttpClientConnectionOperator.java:142)
+nycu-nsi-dds-1    | 	... 35 more
+nycu-nsi-dds-1    | 
+icair-nsi-dds-1   | Caused by: org.apache.http.conn.ConnectTimeoutException: Connect to nycu-nsi-dds:8401 [nycu-nsi-dds/172.19.0.7] failed: Read timed out
+icair-nsi-dds-1   | 	at org.apache.http.impl.conn.DefaultHttpClientConnectionOperator.connect(DefaultHttpClientConnectionOperator.java:151)
+icair-nsi-dds-1   | 	at org.apache.http.impl.conn.PoolingHttpClientConnectionManager.connect(PoolingHttpClientConnectionManager.java:376)
+icair-nsi-dds-1   | 	at org.apache.http.impl.execchain.MainClientExec.establishRoute(MainClientExec.java:393)
+icair-nsi-dds-1   | 	at org.apache.http.impl.execchain.MainClientExec.execute(MainClientExec.java:236)
+icair-nsi-dds-1   | 	at org.apache.http.impl.execchain.ProtocolExec.execute(ProtocolExec.java:186)
+icair-polynsi-1   | 2025-03-20 08:28:51.635  INFO 7 --- [           main] n.d.b.g.s.s.AbstractGrpcServerFactory    : Registered gRPC service: connection.requester.ConnectionRequester, bean: connectionRequesterService, class: nl.surf.polynsi.grpc.connection.requester.ConnectionRequesterService
+icair-polynsi-1   | 2025-03-20 08:28:51.640  INFO 7 --- [           main] n.d.b.g.s.s.AbstractGrpcServerFactory    : Registered gRPC service: grpc.health.v1.Health, bean: grpcHealthService, class: io.grpc.protobuf.services.HealthServiceImpl
+icair-polynsi-1   | 2025-03-20 08:28:51.640  INFO 7 --- [           main] n.d.b.g.s.s.AbstractGrpcServerFactory    : Registered gRPC service: grpc.reflection.v1alpha.ServerReflection, bean: protoReflectionService, class: io.grpc.protobuf.services.ProtoReflectionService
+icair-polynsi-1   | 2025-03-20 08:28:51.764  INFO 7 --- [           main] n.d.b.g.s.s.GrpcServerLifecycle          : gRPC Server started, listening on address: *, port: 9090
+icair-polynsi-1   | 2025-03-20 08:28:51.796  INFO 7 --- [           main] nl.surf.polynsi.PolyNSIApplication       : Started PolyNSIApplication in 7.445 seconds (JVM running for 8.292)
+icair-nsi-dds-1   | 	at org.apache.http.impl.execchain.RetryExec.execute(RetryExec.java:89)
+icair-nsi-dds-1   | 	at org.apache.http.impl.execchain.RedirectExec.execute(RedirectExec.java:110)
+icair-nsi-dds-1   | 	at org.apache.http.impl.client.InternalHttpClient.doExecute(InternalHttpClient.java:185)
+icair-nsi-dds-1   | 	at org.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:72)
+icair-nsi-dds-1   | 	at org.glassfish.jersey.apache.connector.ApacheConnector.apply(ApacheConnector.java:483)
+icair-nsi-dds-1   | 	... 26 more
+icair-nsi-dds-1   | Caused by: java.net.SocketTimeoutException: Read timed out
+icair-nsi-dds-1   | 	at java.base/sun.nio.ch.NioSocketImpl.timedRead(NioSocketImpl.java:283)
+icair-nsi-dds-1   | 	at java.base/sun.nio.ch.NioSocketImpl.implRead(NioSocketImpl.java:309)
+icair-nsi-dds-1   | 	at java.base/sun.nio.ch.NioSocketImpl.read(NioSocketImpl.java:350)
+icair-nsi-dds-1   | 	at java.base/sun.nio.ch.NioSocketImpl$1.read(NioSocketImpl.java:803)
+icair-nsi-dds-1   | 	at java.base/java.net.Socket$SocketInputStream.read(Socket.java:981)
+icair-nsi-dds-1   | 	at java.base/sun.security.ssl.SSLSocketInputRecord.read(SSLSocketInputRecord.java:478)
+icair-nsi-dds-1   | 	at java.base/sun.security.ssl.SSLSocketInputRecord.readHeader(SSLSocketInputRecord.java:472)
+icair-nsi-dds-1   | 	at java.base/sun.security.ssl.SSLSocketInputRecord.decode(SSLSocketInputRecord.java:160)
+icair-nsi-dds-1   | 	at java.base/sun.security.ssl.SSLTransport.decode(SSLTransport.java:110)
+icair-nsi-dds-1   | 	at java.base/sun.security.ssl.SSLSocketImpl.decode(SSLSocketImpl.java:1488)
+icair-nsi-dds-1   | 	at java.base/sun.security.ssl.SSLSocketImpl.readHandshakeRecord(SSLSocketImpl.java:1394)
+icair-nsi-dds-1   | 	at java.base/sun.security.ssl.SSLSocketImpl.startHandshake(SSLSocketImpl.java:441)
+icair-nsi-dds-1   | 	at java.base/sun.security.ssl.SSLSocketImpl.startHandshake(SSLSocketImpl.java:412)
+icair-nsi-dds-1   | 	at org.apache.http.conn.ssl.SSLConnectionSocketFactory.createLayeredSocket(SSLConnectionSocketFactory.java:436)
+icair-nsi-dds-1   | 	at org.apache.http.conn.ssl.SSLConnectionSocketFactory.connectSocket(SSLConnectionSocketFactory.java:384)
+icair-nsi-dds-1   | 	at org.apache.http.impl.conn.DefaultHttpClientConnectionOperator.connect(DefaultHttpClientConnectionOperator.java:142)
+icair-nsi-dds-1   | 	... 35 more
+icair-nsi-dds-1   | 

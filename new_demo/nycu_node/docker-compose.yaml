@@ -9,30 +9,36 @@ services:
   #
   nsi-dds:
     image: ghcr.io/bandwidthondemand/nsi-dds:1.2.0-1
-    depends_on:
-      - nsi-supa
     ports:
       - '8401:8401'           # DDS document port
+    volumes:
+      - ./config/dds:/nsi-dds/config
+      # - /tmp:/nsi-dds/var/log
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8401/dds"]
       interval: 5s
       timeout: 5s
       retries: 3
-      start_period: 10s
-    volumes:
-      - ./config/dds:/nsi-dds/config
-      # - /tmp:/nsi-dds/var/log
+      start_period: 15s
+    depends_on:
+      - nsi-supa
 
   #
   # Path Calculation Engine
   #
   nsi-pce:
     image: ghcr.io/bandwidthondemand/nsi-pce:2.0-7
-    # ports:
-    #   - '8090:8080'
+    ports:
+      - '8090:8080'
     volumes:
       - ./config/pce:/nsi-pce/config
       # - /tmp:/nsi-pce/var/log
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/paths"]
+      interval: 5s
+      timeout: 5s
+      retries: 3
+      start_period: 60s
     depends_on:
       nsi-dds:
         condition: service_healthy
@@ -43,7 +49,8 @@ services:
     ports:
       - "9080:80"         # Safnari Web GUI
     environment:
-      - PORT=9090
+      # - PORT=9080
+      - PORT=80
       - ADDRESS=0.0.0.0
       - CONFIG=/config/config-overrides.conf
       - PGHOST=nsi-postgres
@@ -75,7 +82,8 @@ services:
   #
   nsi-supa:
     # image: "ghcr.io/workfloworchestrator/supa:latest"
-    image: "ghcr.io/cscdannyx/supa:icair-aristaEOS4"     # change image branch
+    # image: "ghcr.io/cscdannyx/supa:icair-aristaEOS4"     # change image branch
+    image: "ghcr.io/cscdannyx/supa:icair-aristaeos4"
     configs:
       - source: supa.env
         target: /usr/local/etc/supa/supa.env
