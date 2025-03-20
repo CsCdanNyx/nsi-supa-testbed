@@ -1,7 +1,5 @@
 version: '3.8'
 
-name: 'nycu-node'
-
 services:
 
   #
@@ -83,7 +81,3 @@ configs:
     file: ./polynsi/logback-spring.xml
   requester-config-overrides:
     file: ./nsi-requester/config-overrides.conf
-
-
-volumes:
-  nsi_safnari_postgres_data:
