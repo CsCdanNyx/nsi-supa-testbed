@@ -1,5 +1,3 @@
-version: '3.8'
-
 name: 'nycu-node'
 
 services:
@@ -10,7 +8,7 @@ services:
   nsi-dds:
     image: ghcr.io/bandwidthondemand/nsi-dds:1.2.0-1
     ports:
-      - '8401:8401'           # DDS document port
+      - "8401:8401"           # DDS document port
     volumes:
       - ./config/dds:/nsi-dds/config
       # - /tmp:/nsi-dds/var/log
@@ -83,16 +81,18 @@ services:
   nsi-supa:
     # image: "ghcr.io/workfloworchestrator/supa:latest"
     # image: "ghcr.io/cscdannyx/supa:icair-aristaEOS4"     # change image branch
-    image: "ghcr.io/cscdannyx/supa:icair-aristaeos4"
+    # image: "ghcr.io/cscdannyx/supa:icair-aristaeos4"
+    image: "ghcr.io/cscdannyx/supa:backends-feature-develop"
     configs:
       - source: supa.env
         target: /usr/local/etc/supa/supa.env
     volumes:
-      - ./config/supa/db:/usr/local/var/db
+      - supa-db:/usr/local/var/db
       # Add your backend_configs folder for each backend
-      - ./config/supa/backend_configs:/usr/local/src/supa/src/supa/nrm/backends/clab_aristaCEOS4_netmiko_configs   # clab_aristaCEOS4_netmiko.env and stps_config.yml
-      - ./config/supa/backend_configs:/usr/local/src/supa/src/supa/nrm/backends/yaml_topology_test_configs
-
+      - supa-config:/usr/local/src/supa/src/supa/nrm/backends/clab_aristaCEOS4_netmiko_configs
+      - supa-config:/usr/local/src/supa/src/supa/nrm/backends/dellOS10_configs
+      - supa-config:/usr/local/src/supa/src/supa/nrm/backends/aristaEOS4_configs
+      - supa-config:/usr/local/src/supa/src/supa/nrm/backends/yaml_topology_test_configs
     ports:
       - "4321:4321"       # document_server_port for topology document
     depends_on:
@@ -100,6 +100,15 @@ services:
         condition: service_completed_successfully
       polynsi:
         condition: service_started
+    environment:
+      - SW_IP_ADDRESS=100.100.100.100
+      - SW_SSH_PORT=22
+      - SW_SSH_USER=testuser
+      - SW_SSH_PASS=testpass
+      - SW_SSH_KEY=testkey
+      - SW_CLI_PROMPT=IC100Arista
+      - SW_CLI_NEEDS_ENABLE=False
+      - SW_STPS_CONFIG=stps_config.yml
 
   #
   # PolyNSI
@@ -125,7 +134,7 @@ services:
     image: 'busybox:latest'
     command: ["sh", "-c", "test -d /usr/local/var/db || mkdir /usr/local/var/db"]
     volumes:
-      - ./config/supa/db:/usr/local/var/db
+      - supa-db:/usr/local/var/db
   
   #
   # NSI Requester
@@ -160,3 +169,15 @@ configs:
 
 volumes:
   nsi_safnari_postgres_data:
+  supa-config:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ./config/supa/backend_configs
+  supa-db:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ./config/supa/db

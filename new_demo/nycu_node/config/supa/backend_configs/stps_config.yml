@@ -1,26 +1,25 @@
 stps:
-  # - stp_id: my_stp1                       # Required, str, Uniq ID of the STP.
-  #   port_id: Ethernet1                    # Required, str, ID of the corresponding port.
-  #   vlans: "1728-1799"                    # Required, str, VLANs part of this STP.
-  #   description: "my test stp 1 with vlan range 1728-1799."         # Optional, str, STP description.
-  #   is_alias_in: connected_stp_out                # Optional, str, Inbound STP ID from connected topology.
-  #   is_alias_out: connected_stp_in               # Optional, str, Outbound STP ID to connected topology.
-  #   bandwidth: 1000                       # Required, int, Available bandwidth for this STP in Mbps.
-  #   enabled: True                         # Optional, bool, STP status.
-
-  - stp_id: icair-arista
-    port_id: Et1
-    vlans: "1700-1799"
-    description: "VLAN range 1700-1799, to iCAIR STP nycu-sw."
-    is_alias_in: "urn:ogf:network:icairtest.org:2025:topology:nycu-sw:out"
-    is_alias_out: "urn:ogf:network:icairtest.org:2025:topology:nycu-sw:in"
+  # Bidirectional STP (standard case, with ":in" and ":out")
+  - stp_id: my_stp1
+    port_id: ethernet1
+    vlans: "1700-1728"
+    description: "Test STP to TWAREN StarLight"
+    remote_stp:
+      prefix_urn: "urn:ogf:network:twaren.nchc.org:2014:topology"
+      id: "starlight"
+    bandwidth: 1000
     enabled: True
 
-  - stp_id: icair-test
-    port_id: Et2
+  # STP with different in/out connections
+  - stp_id: my_stp2
+    port_id: ethernet2
     vlans: "1700-1799"
-    description: "VLAN range 1700-1799, to iCAIR STP nycu-test."
-    is_alias_in: "urn:ogf:network:icairtest.org:2025:topology:nycu-test:out"
-    is_alias_out: "urn:ogf:network:icairtest.org:2025:topology:nycu-test:in"
+    description: "STP to iCAIR OpenNSA mren8700 ar100"
+    remote_stp_in:
+      prefix_urn: "urn:ogf:network:icair.org:2013:mren8700"
+      id: "ar100-out"
+    remote_stp_out:
+      prefix_urn: "urn:ogf:network:icair.org:2013:mren8700"
+      id: "ar100-in"
+    bandwidth: 1000
     enabled: True
-

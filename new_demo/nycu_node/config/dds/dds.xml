@@ -31,7 +31,7 @@
 
     <!-- iCAIR DDS -->
     <!-- <peerURL type="application/vnd.ogf.nsi.dds.v1+xml">https://165.124.33.153:8401/dds</peerURL> -->
-    <peerURL type="application/vnd.ogf.nsi.dds.v1+xml">http://192.168.13.63:8402/dds</peerURL>
+    <!-- <peerURL type="application/vnd.ogf.nsi.dds.v1+xml">http://192.168.13.63:8401/dds</peerURL> -->
 
     <!-- my SuPA -->
     <!-- <peerURL type="application/vnd.ogf.nsi.nsa.v1+xml">http://192.168.13.63:4321/discovery</peerURL> -->
