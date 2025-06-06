@@ -1,0 +1,21 @@
+stps:
+  # STP for Z9664F switch - Dell OS10 configuration
+  - stp_id: z9664f_stp1
+    port_id: ethernet1/1/1
+    vlans: "1900-1928"
+    description: "Z9664F STP to external network"
+    remote_stp:
+      prefix_urn: "urn:ogf:network:external.network:2025:topology"
+      id: "external_stp3"
+    bandwidth: 100000
+    enabled: True
+
+  - stp_id: z9664f_stp2
+    port_id: ethernet1/1/2
+    vlans: "1929-1999"
+    description: "Z9664F STP to internal network"
+    remote_stp:
+      prefix_urn: "urn:ogf:network:internal.network:2025:topology"
+      id: "internal_stp3"
+    bandwidth: 100000
+    enabled: True 

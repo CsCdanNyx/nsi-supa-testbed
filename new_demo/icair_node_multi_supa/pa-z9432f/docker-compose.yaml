@@ -1,0 +1,70 @@
+name: 'icair-pa-z9432f'
+
+services:
+  #
+  # SuPA for z9432f switch
+  #
+  nsi-supa:
+    image: "ghcr.io/cscdannyx/supa:backends-feature-develop"
+    configs:
+      - source: supa.env
+        target: /usr/local/etc/supa/supa.env
+    volumes:
+      - ./config/supa/db:/usr/local/var/db
+      - ./config/supa/backend_configs:/usr/local/src/supa/src/supa/nrm/backends/dellOS10_configs
+    ports:
+      - "4322:4322"       # document_server_port for topology document
+    depends_on:
+      create-database-folder:
+        condition: service_completed_successfully
+      polynsi:
+        condition: service_started
+    environment:
+      - SW_IP_ADDRESS=192.168.50.31
+      - SW_SSH_PORT=22
+      - SW_SSH_USER=supa
+      - SW_SSH_PASS=CYCU2025SuPA
+      - SW_SSH_KEY=testkey
+      - SW_CLI_PROMPT=
+      - SW_CLI_NEEDS_ENABLE=False
+      - SW_STPS_CONFIG=stps_z9432f.yml
+
+  #
+  # PolyNSI for z9432f
+  #
+  polynsi:
+    image: "ghcr.io/workfloworchestrator/polynsi:latest"
+    ports:
+      - "8444:8444"   # NSI soap port for connection with other NSA
+    configs:
+      - source: polynsi-application.properties
+        target: /usr/local/src/polynsi/application.properties
+      - source: polynsi-keystore.jks
+        target: /usr/local/src/polynsi/polynsi-keystore.jks
+      - source: polynsi-truststore.jks
+        target: /usr/local/src/polynsi/polynsi-truststore.jks
+      - source: polynsi-logback-spring.xml
+        target: /usr/local/src/polynsi/logback-spring.xml
+
+  #
+  # create SuPA database folder
+  #
+  create-database-folder:
+    image: 'busybox:latest'
+    command: ["sh", "-c", "test -d /usr/local/var/db || mkdir /usr/local/var/db"]
+    volumes:
+      - ./config/supa/db:/usr/local/var/db
+
+configs:
+  supa.env:
+    file: ./config/supa/supa.env
+  polynsi-application.properties:
+    file: ./config/polynsi/application.properties
+  polynsi-keystore.jks:
+    file: ./config/polynsi/polynsi-keystore.jks
+  polynsi-truststore.jks:
+    file: ./config/polynsi/polynsi-truststore.jks
+  polynsi-logback-spring.xml: 
+    file: ./config/polynsi/logback-spring.xml
+
+ 

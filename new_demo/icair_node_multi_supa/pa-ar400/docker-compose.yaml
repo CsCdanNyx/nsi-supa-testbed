@@ -1,0 +1,72 @@
+name: 'icair-pa-ar400'
+
+services:
+  #
+  # SuPA for ar400 switch
+  #
+  nsi-supa:
+    image: "ghcr.io/cscdannyx/supa:backends-feature-develop"
+    configs:
+      - source: supa.env
+        target: /usr/local/etc/supa/supa.env
+    volumes:
+      - ./config/supa/db:/usr/local/var/db
+      # Add your backend_configs folder for each backend
+      - ./config/supa/backend_configs:/usr/local/src/supa/src/supa/nrm/backends/dellOS10_configs
+      - ./config/supa/backend_configs:/usr/local/src/supa/src/supa/nrm/backends/aristaEOS4_configs
+      - ./config/supa/backend_configs:/usr/local/src/supa/src/supa/nrm/backends/yaml_topology_test_configs
+    ports:
+      - "4321:4321"       # document_server_port for topology document
+    depends_on:
+      create-database-folder:
+        condition: service_completed_successfully
+      polynsi:
+        condition: service_started
+    environment:
+      - SW_IP_ADDRESS=192.168.50.17
+      - SW_SSH_PORT=22
+      - SW_SSH_USER=supa
+      - SW_SSH_PASS=SuPA2025
+      - SW_CLI_PROMPT=Ar400CR3
+      - SW_CLI_NEEDS_ENABLE=False
+      - SW_STPS_CONFIG=stps_ar400.yml
+
+  #
+  # PolyNSI for ar400
+  #
+  polynsi:
+    image: "ghcr.io/workfloworchestrator/polynsi:latest"
+    ports:
+      - "8443:8443"   # NSI soap port for connection with other NSA
+    configs:
+      - source: polynsi-application.properties
+        target: /usr/local/src/polynsi/application.properties
+      - source: polynsi-keystore.jks
+        target: /usr/local/src/polynsi/polynsi-keystore.jks
+      - source: polynsi-truststore.jks
+        target: /usr/local/src/polynsi/polynsi-truststore.jks
+      - source: polynsi-logback-spring.xml
+        target: /usr/local/src/polynsi/logback-spring.xml
+
+  #
+  # create SuPA database folder
+  #
+  create-database-folder:
+    image: 'busybox:latest'
+    command: ["sh", "-c", "test -d /usr/local/var/db || mkdir /usr/local/var/db"]
+    volumes:
+      - ./config/supa/db:/usr/local/var/db
+
+configs:
+  supa.env:
+    file: ./config/supa/supa.env
+  polynsi-application.properties:
+    file: ./config/polynsi/application.properties
+  polynsi-keystore.jks:
+    file: ./config/polynsi/polynsi-keystore.jks
+  polynsi-truststore.jks:
+    file: ./config/polynsi/polynsi-truststore.jks
+  polynsi-logback-spring.xml: 
+    file: ./config/polynsi/logback-spring.xml
+
+ 

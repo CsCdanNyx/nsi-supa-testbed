@@ -1,0 +1,33 @@
+stps:
+  # STP for AR400 switch - Arista configuration
+  - stp_id: ar400_stp1
+    port_id: ethernet1/1
+    vlans: "1700-1799"
+    description: "AR400 STP to external network"
+    remote_stp:
+      prefix_urn: "urn:ogf:network:external.network:2025:topology"
+      id: "external_stp1"
+    bandwidth: 1000
+    enabled: True
+
+  - stp_id: ar400_stp2
+    port_id: ethernet1/2
+    vlans: "1729-1799"
+    description: "AR400 STP to external network"
+    remote_stp:
+      prefix_urn: "urn:ogf:network:external.network:2025:topology"
+      id: "external_stp2"
+    bandwidth: 1000
+    enabled: True
+
+  # STP toNYCU for testing
+  - stp_id: toNYCU
+    port_id: ethernet2
+    vlans: "1700-1799"
+    description: "STP to NYCU"
+    remote_stp:
+      prefix_urn: "urn:ogf:network:nycu.edu.tw:2025:topology"
+      id: "toiCAIRar400"
+    bandwidth: 1000
+    enabled: True
+  
