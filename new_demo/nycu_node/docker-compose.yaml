@@ -7,6 +7,7 @@ services:
   #
   nsi-dds:
     image: ghcr.io/bandwidthondemand/nsi-dds:1.2.0-1
+    # user: "1000:1000"
     ports:
       - "8401:8401"           # DDS document port
     volumes:
@@ -87,12 +88,12 @@ services:
       - source: supa.env
         target: /usr/local/etc/supa/supa.env
     volumes:
-      - supa-db:/usr/local/var/db
+      - ./config/supa/db:/usr/local/var/db
       # Add your backend_configs folder for each backend
-      - supa-config:/usr/local/src/supa/src/supa/nrm/backends/clab_aristaCEOS4_netmiko_configs
-      - supa-config:/usr/local/src/supa/src/supa/nrm/backends/dellOS10_configs
-      - supa-config:/usr/local/src/supa/src/supa/nrm/backends/aristaEOS4_configs
-      - supa-config:/usr/local/src/supa/src/supa/nrm/backends/yaml_topology_test_configs
+      - ./config/supa/backend_configs:/usr/local/src/supa/src/supa/nrm/backends/clab_aristaCEOS4_netmiko_configs
+      - ./config/supa/backend_configs:/usr/local/src/supa/src/supa/nrm/backends/dellOS10_configs
+      - ./config/supa/backend_configs:/usr/local/src/supa/src/supa/nrm/backends/aristaEOS4_configs
+      - ./config/supa/backend_configs:/usr/local/src/supa/src/supa/nrm/backends/yaml_topology_test_configs
     ports:
       - "4321:4321"       # document_server_port for topology document
     depends_on:
@@ -134,7 +135,7 @@ services:
     image: 'busybox:latest'
     command: ["sh", "-c", "test -d /usr/local/var/db || mkdir /usr/local/var/db"]
     volumes:
-      - supa-db:/usr/local/var/db
+      - ./config/supa/db:/usr/local/var/db
   
   #
   # NSI Requester
@@ -165,19 +166,3 @@ configs:
     file: ./config/polynsi/logback-spring.xml
   requester-config-overrides:
     file: ./config/nsi-requester/config-overrides.conf
-
-
-volumes:
-  nsi_safnari_postgres_data:
-  supa-config:
-    driver: local
-    driver_opts:
-      type: none
-      o: bind
-      device: ./config/supa/backend_configs
-  supa-db:
-    driver: local
-    driver_opts:
-      type: none
-      o: bind
-      device: ./config/supa/db
