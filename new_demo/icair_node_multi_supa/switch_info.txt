@@ -1,0 +1,4 @@
+switch name     backend used	hostname (IP)	ssh port	username	password	    CLI prompt	    need enable	    STPs config
+ar400           aristaeos4	    192.168.50.17	22	        supa	    SuPA2025	    Ar400CR3	    FALSE	        stps_ar400.yml
+z9432f          dellOS10	    192.168.50.31	22	        supa	    CYCU2025SuPA		            FALSE	        stps_z9432f.yml
+z9664f          dellOS10	    192.168.50.49	22	        supa	    CYCU2025SuPA		            FALSE	        stps_z9664f.yml

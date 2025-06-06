@@ -1,0 +1,21 @@
+stps:
+  # STP for Z9432F switch - Dell OS10 configuration
+  - stp_id: z9432f_stp1
+    port_id: ethernet1/1/1
+    vlans: "1800-1828"
+    description: "Z9432F STP to external network"
+    remote_stp:
+      prefix_urn: "urn:ogf:network:external.network:2025:topology"
+      id: "external_stp2"
+    bandwidth: 10000
+    enabled: True
+
+  - stp_id: z9432f_stp2
+    port_id: ethernet1/1/2
+    vlans: "1829-1899"
+    description: "Z9432F STP to internal network"
+    remote_stp:
+      prefix_urn: "urn:ogf:network:internal.network:2025:topology"
+      id: "internal_stp2"
+    bandwidth: 10000
+    enabled: True 

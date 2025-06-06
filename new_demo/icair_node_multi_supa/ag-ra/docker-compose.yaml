@@ -1,0 +1,94 @@
+name: 'icair-ag-ra'
+
+services:
+  #
+  # Document Distribution Service
+  #
+  nsi-dds:
+    image: ghcr.io/bandwidthondemand/nsi-dds:1.2.0-1
+    user: "1001:1001"
+    ports:
+      - "8401:8401"           # DDS document port
+    volumes:
+      - ./config/dds:/nsi-dds/config
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8401/dds"]
+      interval: 5s
+      timeout: 5s
+      retries: 3
+      start_period: 15s
+
+  #
+  # Path Calculation Engine
+  #
+  nsi-pce:
+    image: ghcr.io/bandwidthondemand/nsi-pce:2.0-7
+    ports:
+      - '8090:8080'
+    volumes:
+      - ./config/pce:/nsi-pce/config
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/paths"]
+      interval: 5s
+      timeout: 5s
+      retries: 3
+      start_period: 60s
+    depends_on:
+      nsi-dds:
+        condition: service_healthy
+
+  #
+  # Safnari Web GUI
+  #
+  nsi-safnari:
+    image: ghcr.io/bandwidthondemand/nsi-safnari:v3.0.1
+    ports:
+      - "9080:80"         # Safnari Web GUI
+    environment:
+      - PORT=80
+      - ADDRESS=0.0.0.0
+      - CONFIG=/config/config-overrides.conf
+      - PGHOST=nsi-postgres
+      - PGPORT=5432
+      - PGDATABASE=nsi-safnari
+      - PGUSER=nsi-safnari-user
+      - PGPASSWORD=nsitest
+    volumes:
+      - ./config/safnari:/config
+    depends_on:
+      - nsi-pce
+      - nsi-postgres
+    restart: on-failure:3
+
+  #
+  # PostgreSQL Database
+  #
+  nsi-postgres:
+    image: postgres:9.6.21-alpine
+    environment:
+      - POSTGRES_USER=nsi-safnari-user
+      - POSTGRES_PASSWORD=nsitest
+      - POSTGRES_DB=nsi-safnari
+    volumes:
+      - nsi_safnari_postgres_data:/var/lib/postgresql/data
+
+  #
+  # NSI Requester
+  #  
+  nsi-requester:
+    image: "ghcr.io/bandwidthondemand/nsi-requester:1.1.1"
+    ports:
+      - "9000:9000"                # Web GUI
+    environment:
+      - TZ=Asia/Taipei
+      # - TZ=America/Chicago
+    configs:
+      - source: requester-config-overrides
+        target: /config-overrides.conf
+
+configs:
+  requester-config-overrides:
+    file: ./config/nsi-requester/config-overrides.conf
+
+volumes:
+  nsi_safnari_postgres_data: 

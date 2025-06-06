@@ -1,0 +1,22 @@
+stps:
+  # Bidirectional STP (standard case, with ":in" and ":out")
+  - stp_id: test_stp
+    port_id: ethernet1
+    vlans: "1700-1799"
+    description: "Test STP to TWAREN StarLight"
+    remote_stp:
+      prefix_urn: "urn:ogf:network:twaren.nchc.org:2014:topology"
+      id: "starlight"
+    bandwidth: 1000
+    enabled: True
+
+  # STP toNYCU for testing
+  - stp_id: toNYCU
+    port_id: ethernet2
+    vlans: "1700-1799"
+    description: "STP to NYCU"
+    remote_stp:
+      prefix_urn: "urn:ogf:network:nycu.edu.tw:2025:topology"
+      id: "toiCAIRz9664f"
+    bandwidth: 1000
+    enabled: True
