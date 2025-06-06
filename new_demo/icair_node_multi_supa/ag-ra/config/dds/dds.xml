@@ -38,8 +38,8 @@
     <!-- pa-ar400 -->
     <peerURL type="application/vnd.ogf.nsi.nsa.v1+xml">http://165.124.33.153:4321/discovery</peerURL>
     <!-- pa-z9432f -->
-    <!-- <peerURL type="application/vnd.ogf.nsi.nsa.v1+xml">http://165.124.33.153:4322/discovery</peerURL> -->
+    <peerURL type="application/vnd.ogf.nsi.nsa.v1+xml">http://165.124.33.153:4322/discovery</peerURL>
     <!-- pa-z9664f -->
-    <!-- <peerURL type="application/vnd.ogf.nsi.nsa.v1+xml">http://165.124.33.153:4323/discovery</peerURL> -->
+    <peerURL type="application/vnd.ogf.nsi.nsa.v1+xml">http://165.124.33.153:4323/discovery</peerURL>
 
 </tns:dds>
