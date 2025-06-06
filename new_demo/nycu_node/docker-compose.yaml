@@ -153,6 +153,9 @@ services:
         target: /config-overrides.conf        # Requester urn, Providers configs
 
 
+volumes:
+  nsi_safnari_postgres_data:
+
 configs:
   supa.env:
     file: ./config/supa/supa.env                          # change backend
@@ -166,3 +169,4 @@ configs:
     file: ./config/polynsi/logback-spring.xml
   requester-config-overrides:
     file: ./config/nsi-requester/config-overrides.conf
+  
