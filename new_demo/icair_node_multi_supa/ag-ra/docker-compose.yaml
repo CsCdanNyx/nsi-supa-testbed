@@ -80,8 +80,8 @@ services:
     ports:
       - "9000:9000"                # Web GUI
     environment:
-      - TZ=Asia/Taipei
-      # - TZ=America/Chicago
+      # - TZ=Asia/Taipei
+      - TZ=America/Chicago
     configs:
       - source: requester-config-overrides
         target: /config-overrides.conf

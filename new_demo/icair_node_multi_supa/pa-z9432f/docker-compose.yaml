@@ -12,6 +12,7 @@ services:
     volumes:
       - ./config/supa/db:/usr/local/var/db
       - ./config/supa/backend_configs:/usr/local/src/supa/src/supa/nrm/backends/dellOS10_configs
+      - ./config/supa/backend_configs:/usr/local/src/supa/src/supa/nrm/backends/yaml_topology_test_configs
     ports:
       - "4322:4322"       # document_server_port for topology document
     depends_on:
