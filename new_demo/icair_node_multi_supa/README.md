@@ -7,7 +7,6 @@ This guide helps you set up a complete Network Service Agent (NSA) node with mul
 A fully functional NSI infrastructure with:
 - **1 Aggregator/Requester Agent (AG-RA)** - Central coordination
 - **3 Provider Agents (PA)** - Each managing a specific physical switch
-- **Automatic service orchestration** - All services work together seamlessly
 
 ## 📋 Prerequisites
 
@@ -71,11 +70,11 @@ All services will be accessible externally via this public IP address instead of
 
 This multi-PA NSA node uses a **modular Docker Compose architecture** designed for scalability and maintainability:
 
-### Master Orchestration Pattern
-- **Main `docker-compose.yaml`**: Uses Docker Compose `include` feature to orchestrate all components
+### Script-Based Orchestration Pattern
+- **Management script `nsi-manage.sh`**: Simple script to start/stop all components in proper order
 - **Component isolation**: Each service group (AG-RA, PA-AR400, PA-Z9432F, PA-Z9664F) has its own docker-compose.yaml
 - **Independent deployment**: Can start/stop individual PAs without affecting others
-- **Shared configuration**: Common patterns across all PAs while maintaining switch-specific settings
+
 
 ### Per-Component Structure
 Each PA follows the same structure pattern:
@@ -96,130 +95,134 @@ cd new_demo/icair_node_multi_supa
 
 ### Step 2: Start All Services
 ```bash
-# Start everything in background mode
-docker compose up -d
+# Start everything using the management script
+./nsi-manage.sh start
 
 # This command will:
 # 1. Pull required Docker images (first time only)
-# 2. Create and start all containers
-# 3. Set up internal networks between services
-# 4. Mount configuration files into containers
+# 2. Start AG-RA (Aggregator/Requester Agent) first
+# 3. Wait for AG-RA to initialize (5 seconds)
+# 4. Start all PAs in parallel
+# 5. Show success confirmation with component list
 ```
 
 ### Step 3: Verify Services Are Running
 ```bash
-# Check all services status
-docker compose ps
+# Check individual component status
+cd ag-ra && docker compose ps
+cd pa-ar400 && docker compose ps
+cd pa-z9432f && docker compose ps
+cd pa-z9664f && docker compose ps
 
-# Expected output should show all services as "running":
-# - icair-ag-ra-nsi-dds-1
-# - icair-ag-ra-nsi-pce-1  
-# - icair-ag-ra-nsi-safnari-1
-# - icair-ag-ra-nsi-requester-1
-# - icair-pa-ar400-nsi-supa-1
-# - icair-pa-ar400-polynsi-1
-# - icair-pa-z9432f-nsi-supa-1
-# - icair-pa-z9432f-polynsi-1
-# - icair-pa-z9664f-nsi-supa-1
-# - icair-pa-z9664f-polynsi-1
+# Or check all at once (from each directory):
+# Expected output should show all services as "running"
 ```
 
 ### Step 4: Access Web Interfaces
 Once all services are running, open your browser to:
 
 - **Safnari Network GUI**: http://165.124.33.153:9080
-  - View network topology
-  - Monitor active connections
-  - Manage network resources
-
 - **NSI Requester**: http://165.124.33.153:9000  
-  - Create connection requests
-  - Monitor connection status
-  - Test end-to-end connectivity
 
 ## 🔧 Advanced Docker Compose Operations
+
+### Using the Management Script
+
+#### Start/Stop All Services
+```bash
+# Start all components (AG-RA first, then PAs)
+./nsi-manage.sh start
+
+# Stop all components  
+./nsi-manage.sh stop
+
+# Show help
+./nsi-manage.sh help
+```
 
 ### Starting Individual Components
 
 #### Start Only AG-RA (without any PA)
 ```bash
-docker compose up -d ag-ra
+cd ag-ra
+docker compose up -d
+cd ..
 # Use this when you want to test the central services first
 ```
 
 #### Start Specific Provider Agents
 ```bash
 # Start only AR400 PA
-docker compose up -d pa-ar400
+cd pa-ar400 && docker compose up -d
 
-# Start multiple PAs but not AG-RA
-docker compose up -d pa-ar400 pa-z9432f
+# Start multiple PAs individually
+cd pa-ar400 && docker compose up -d
+cd pa-z9432f && docker compose up -d
 
 # Start all Dell switches (Z9432F + Z9664F)
-docker compose up -d pa-z9432f pa-z9664f
+cd pa-z9432f && docker compose up -d
+cd pa-z9664f && docker compose up -d
 ```
 
 ### Service Management Commands
 
 #### Viewing Logs
 ```bash
-# View logs from all services (real-time)
-docker compose logs -f
+# View logs from specific component
+cd pa-ar400 && docker compose logs -f
 
 # View logs from specific service
-docker compose logs -f pa-ar400-nsi-supa
+cd pa-ar400 && docker compose logs -f nsi-supa
 
 # View historical logs (last 100 lines)
-docker compose logs --tail=100 pa-z9432f-polynsi
+cd pa-z9432f && docker compose logs --tail=100 polynsi
 
-# View logs from all PA services only
-docker compose logs pa-ar400 pa-z9432f pa-z9664f
+# View all AG-RA logs
+cd ag-ra && docker compose logs -f
 ```
 
 #### Restarting Services
 ```bash
 # Restart specific service (after config changes)
-docker compose restart pa-ar400-nsi-supa
+cd pa-ar400 && docker compose restart nsi-supa
 
 # Restart all services in a PA
-docker compose restart pa-ar400
+cd pa-ar400 && docker compose restart
 
-# Restart everything
-docker compose restart
+# Restart everything using script
+./nsi-manage.sh stop
+./nsi-manage.sh start
 ```
 
 #### Stopping Services
 ```bash
 # Stop specific PA
-docker compose stop pa-z9664f
+cd pa-z9664f && docker compose down
 
-# Stop all services but keep containers
-docker compose stop
+# Stop all services using script
+./nsi-manage.sh stop
 
-# Stop and remove containers (full cleanup)
-docker compose down
-
-# Stop and remove everything including volumes
-docker compose down -v
+# Stop and remove everything including volumes (per component)
+cd pa-ar400 && docker compose down -v
 ```
 
 #### Service Health Checks
 ```bash
-# Check detailed container information
-docker compose ps -a
+# Check detailed container information for specific PA
+cd pa-ar400 && docker compose ps -a
 
 # Access container shell for debugging
-docker compose exec pa-ar400-nsi-supa bash
+cd pa-ar400 && docker compose exec nsi-supa bash
 
 # Run commands inside containers
-docker compose exec pa-ar400-nsi-supa ping 192.168.50.17
+cd pa-ar400 && docker compose exec nsi-supa ping 192.168.50.17
 ```
 
 ## 📁 Configuration File Structure
 
 ```
 icair_node_multi_supa/
-├── docker-compose.yaml              # Master orchestration file
+├── nsi-manage.sh                    # Management script for start/stop
 ├── switch_info.txt                  # Switch reference information
 ├── README.md                        # This guide
 │
@@ -392,12 +395,12 @@ docker stats icair-pa-ar400-nsi-supa-1 icair-pa-ar400-polynsi-1
 #### Test Switch Connectivity
 ```bash
 # Test from SuPA container to switch
-docker compose exec pa-ar400-nsi-supa ping 192.168.50.17
-docker compose exec pa-z9432f-nsi-supa ping 192.168.50.31  
-docker compose exec pa-z9664f-nsi-supa ping 192.168.50.49
+cd pa-ar400 && docker compose exec nsi-supa ping 192.168.50.17
+cd pa-z9432f && docker compose exec nsi-supa ping 192.168.50.31
+cd pa-z9664f && docker compose exec nsi-supa ping 192.168.50.49
 
 # Test SSH connectivity
-docker compose exec pa-ar400-nsi-supa ssh -o ConnectTimeout=5 supa@192.168.50.17 'show version'
+cd pa-ar400 && docker compose exec nsi-supa ssh -o ConnectTimeout=5 supa@192.168.50.17 'show version'
 ```
 
 ## 🌐 NSI Protocol Endpoints Reference
@@ -433,5 +436,87 @@ docker compose exec pa-ar400-nsi-supa ssh -o ConnectTimeout=5 supa@192.168.50.17
 | AR400 | 192.168.50.17 | supa | SuPA2025 | aristaEOS4 | Ar400CR3 |
 | Z9432F | 192.168.50.31 | supa | CYCU2025SuPA | dellOS10 | (empty) |
 | Z9664F | 192.168.50.49 | supa | CYCU2025SuPA | dellOS10 | (empty) |
+
+## 🔧 Adding New Provider Agents
+
+To add a new PA for another switch, follow these steps:
+
+### Step 1: Create PA Directory Structure
+```bash
+# Create new PA directory (example: pa-new-switch)
+mkdir pa-new-switch
+mkdir -p pa-new-switch/config/{supa/{backend_configs,db},polynsi}
+```
+
+### Step 2: Create Configuration Files
+```bash
+# Copy from existing PA as template
+cp pa-ar400/docker-compose.yaml pa-new-switch/
+cp -r pa-ar400/config/* pa-new-switch/config/
+
+# Edit the copied files:
+# 1. Update ports in docker-compose.yaml (e.g., 4324:4324, 8446:8446)
+# 2. Update switch IP, credentials in supa.env
+# 3. Update backend type if different switch vendor
+# 4. Create new stps_new-switch.yml with switch-specific STPs
+# 5. Update PolyNSI application.properties server.port
+```
+
+### Step 3: Update Management Script
+Edit `nsi-manage.sh` and add your new PA to the COMPONENTS array:
+
+```bash
+# In nsi-manage.sh, update this section:
+COMPONENTS=(
+    "ag-ra:Aggregator/Requester Agent"
+    "pa-ar400:PA-AR400 (Arista Switch)"
+    "pa-z9432f:PA-Z9432F (Dell Switch)"
+    "pa-z9664f:PA-Z9664F (Dell Switch)"
+    "pa-new-switch:PA-New Switch"  # Add this line
+)
+```
+
+### Step 4: Test New PA
+```bash
+# Test individual PA first
+cd pa-new-switch
+docker compose up -d
+docker compose logs -f
+docker compose down
+cd ..
+
+# Test with full setup
+./nsi-manage.sh start
+```
+
+That's it! The script will automatically:
+- Start the new PA along with others
+- Show it in the started components list
+- Handle start/stop operations
+
+### Configuration File Templates
+
+#### Key files to modify for new PA:
+
+**docker-compose.yaml**: Update ports and project name
+```yaml
+name: 'icair-pa-new-switch'
+# Update port numbers to avoid conflicts
+ports:
+  - "4324:4324"  # SuPA port
+  - "8446:8446"  # PolyNSI port
+```
+
+**config/supa/supa.env**: Update topology and ports
+```bash
+topology=newswitchtopology
+document_server_port=4324
+nsa_provider_port=8446
+```
+
+**config/polynsi/application.properties**: Update server port
+```properties
+server.port=8446
+```
 
 Remember: All configuration files are stored locally in the `config/` directories, so you can always inspect and modify them directly with your preferred text editor! 
