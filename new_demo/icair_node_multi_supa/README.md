@@ -403,6 +403,69 @@ cd pa-z9664f && docker compose exec nsi-supa ping 192.168.50.49
 cd pa-ar400 && docker compose exec nsi-supa ssh -o ConnectTimeout=5 supa@192.168.50.17 'show version'
 ```
 
+## 🗂️ Data Cleanup
+
+The NSI infrastructure stores persistent data that may need cleanup when troubleshooting or after configuration changes.
+
+### Data Locations
+- **SuPA databases**: `pa-*/config/supa/db/` (connection and topology data)
+- **DDS cache/repository**: `ag-ra/config/dds/cache/` and `ag-ra/config/dds/repository/` (topology documents)
+
+### When to Clean Up
+- Services failing to start after configuration changes
+- Inconsistent topology information between components
+- Database corruption errors in logs
+
+### Quick Cleanup Commands (Recommended)
+
+Use the management script for automated cleanup:
+
+```bash
+# Clean DDS cache and repository (topology issues)
+./nsi-manage.sh clean-dds
+
+# Clean all PA SuPA databases (requires sudo)
+sudo ./nsi-manage.sh clean-pa
+```
+
+### Manual Cleanup Commands
+
+**⚠️ Important**: Always stop services before manual cleanup to prevent data corruption.
+
+#### Complete Cleanup (All Data)
+```bash
+# Stop all services
+./nsi-manage.sh stop
+
+# Clean up all data
+sudo rm -rf pa-ar400/config/supa/db/
+sudo rm -rf pa-z9432f/config/supa/db/
+sudo rm -rf pa-z9664f/config/supa/db/
+sudo rm -rf ag-ra/config/dds/cache/
+sudo rm -rf ag-ra/config/dds/repository/
+
+# Restart services
+./nsi-manage.sh start
+```
+
+#### Clean Specific PA
+```bash
+# Example: Clean AR400 PA only
+cd pa-ar400
+docker compose down
+sudo rm -rf config/supa/db/
+docker compose up -d
+```
+
+#### Clean DDS Only
+```bash
+# Clean topology cache/repository only
+cd ag-ra
+docker compose down
+sudo rm -rf config/dds/cache/ config/dds/repository/
+docker compose up -d
+```
+
 ## 🌐 NSI Protocol Endpoints Reference
 
 ### AG-RA Endpoints
